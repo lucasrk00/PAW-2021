@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<htmlt>
+<head>
+	<title>HomePage</title>
+</head>
+<body>
+	<!-- Header del sitio -->
+	<header>
+		<!-- Título  -->
+		<h1>Institución Pepito</h1>
+		<!-- Info del sitio -->
+		<div class="info">
+			<p>Número de teléfono</p>
+			<p>Dirección</p>
+		</div>
+		<!-- Menú -->
+		<nav>
+			<ul>
+				<li><a href="./">Inicio</a></li>
+				<li><a href="./institución">Institución</a></li>
+				<li><a href="./noticias">Noticias</a></li>
+				<li><a href="./profesionales">Profesionales</a></li>
+				<li><a href="./obrasocial">Obra Social</a></li>
+				<li><a href="./misturnos">Mis Turnos</a></li>
+				<li><a href="./sacarturno">Sacar Turno</a></li>
+			</ul>
+		</nav>
+	</header>
+	<!-- Contenido del sitio -->
+	<div class="content">
+		<!-- Sección de sacar turno -->
+		<section class="sacar-turno">
+			<h3>Sacar Turno</h3>
+			<form action="./" method="post">
+				<!-- Especialidad del Turno -->
+				<label for="especialidad">Especialidad:</label>
+				<select name="especialidad" id="especialidad">
+					<option value="dentista">Dentista</option>
+					<!-- Otras opciones -->
+					<option value="...">....</option>
+				</select>
+
+				<!-- Fecha del turno -->
+				<label for="fecha">Fecha:</label>
+				<input type="date" name="fecha" id="fecha">
+
+				<!--Horario del turno-->
+				<label for="hora">Hora:</label>
+				<input type="time" name="hora" id="hora">
+
+				<input type="submit" value="Continuar">
+			</form>
+		</section>
+		<!-- Sección de noticias del sitio -->
+		<section class="novedades">
+			<h3>Novedades</h3>
+			<!-- X4 Articles -->
+			<article>
+				<!-- Imágen del artículo -->
+				<img src="..." alt="Título de la novedad">
+				<!-- Título del artículo -->
+				<h6>Título Novedad</h6> 
+				<!-- Fecha del artículo --> 
+				<p class="fecha">17/03/2021</p>
+				<!--Contenido de la novedad-->
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi rhoncus eu felis id consectetur. Praesent et nulla nec purus lacinia viverra.</p>
+				<!-- Botón "Ver Mas" del artículo -->
+				<a href="url a la novedad">Ver Más<a>
+			</article>
+		</section>
+	</div>
+	<!-- Footer del sitio -->
+	<footer>
+		<!-- Título  -->
+		<h4>Institución Pepito</h4>
+		<!-- Info del sitio -->
+		<div class="info">
+			<p>Número de teléfono</p>
+			<p>Dirección</p>
+		</div>
+	</footer>
+</body>
+</html>
