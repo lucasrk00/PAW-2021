@@ -10,8 +10,8 @@
 		<h1>Institución Pepito</h1>
 		<!-- Info del sitio -->
 		<div class="info">
-			<p>Número de teléfono</p>
-			<p>Dirección</p>
+			<p>123456789</p>
+			<p>Cochabamba 791, Buenos Aires</p>
 		</div>
 		<!-- Menú -->
 		<nav>
@@ -28,13 +28,13 @@
 	</header>
 	<!-- Contenido del sitio -->
 	<div class="content">
-		<!-- Sección de sacar turno -->
-		<section class="sacar-turno">
-			<h3>Sacar Turno</h3>
+		<!-- Sección de solicitar turno -->
+		<section class="solicitar-turno">
+			<h2>Solicitar turno</h2>
 			<form action="./" method="post">
 				<!-- Especialidad del Turno -->
 				<label for="especialidad">Especialidad:</label>
-				<select name="especialidad" id="especialidad">
+				<select name="especialidad" id="especialidad" required>
 					<option value="dentista">Dentista</option>
 					<!-- Otras opciones -->
 					<option value="...">....</option>
@@ -42,24 +42,24 @@
 
 				<!-- Fecha del turno -->
 				<label for="fecha">Fecha:</label>
-				<input type="date" name="fecha" id="fecha">
+				<input type="date" name="fecha" id="fecha" required>
 
 				<!--Horario del turno-->
 				<label for="hora">Hora:</label>
-				<input type="time" name="hora" id="hora">
+				<input type="time" name="hora" id="hora" required>
 
 				<input type="submit" value="Continuar">
 			</form>
 		</section>
 		<!-- Sección de noticias del sitio -->
 		<section class="novedades">
-			<h3>Novedades</h3>
+			<h2>Novedades</h2>
 			<!-- X4 Articles -->
 			<article>
 				<!-- Imágen del artículo -->
 				<img src="..." alt="Título de la novedad">
 				<!-- Título del artículo -->
-				<h6>Título Novedad</h6> 
+				<h3>Título Novedad</h3> 
 				<!-- Fecha del artículo --> 
 				<p class="fecha">17/03/2021</p>
 				<!--Contenido de la novedad-->
