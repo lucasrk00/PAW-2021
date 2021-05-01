@@ -147,6 +147,9 @@ main:not(.home) section {
 	padding: 1.5rem;
 	background-color:white;
 }
+main:not(.home) section h2 {
+	margin-bottom: .8rem;
+}
 
 
 /* main, header, footer {
