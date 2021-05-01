@@ -7,7 +7,8 @@
 	--primary: #0092D1;
 	--text: #000;
 	--light-text: #707070;
-	--cancel: #DC3545;
+	--light-dark: #E8E8E8;
+	--danger: #DC3545;
 	--header-padding: 1.5rem;
 }
 
@@ -104,9 +105,17 @@ button, input[type="submit"], a.button {
 	text-decoration: none;
 	display: inline-block;
 }
+button[disabled], button:disabled, input[type="submit"][disabled], a.button.disabled {
+	color: white;
+	background-color: #A6A6A6;
+}
 button.secondary, input[type="submit"].secondary, a.button.secondary {
 	color: white;
 	background-color: var(--primary);
+}
+button.danger, input[type="submit"].danger, a.danger {
+	color: white;
+	background-color: var(--danger);
 }
 
 /* NOVEDAD */
@@ -135,7 +144,7 @@ main:not(.home) {
 	margin: 1.5rem auto;
 }
 main:not(.home) section {
-	padding: .5rem;
+	padding: 1.5rem;
 	background-color:white;
 }
 
