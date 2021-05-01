@@ -1,0 +1,46 @@
+main {
+	
+}
+section.solicitar-turno {
+	background-image: url('../images/home-image.png');
+	background-size: 100%;
+	background-position: left;
+	height: 32rem;
+	background-repeat: no-repeat;
+	display: flex;
+	align-items: center;
+	padding-left: 4rem;
+}
+
+main section.solicitar-turno div {
+	/*margin: 3rem 4rem;*/
+	/*border: 1px solid black;*/
+	width: 25rem;
+	border-radius: 8px;
+	color: white;
+	background-color:rgba(0,0,0,.2);
+}
+main section.solicitar-turno div h2 {
+	background-color: var(--alternative);
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	padding: 0.7rem 1rem;
+}
+main section.solicitar-turno div form {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0.5rem 0;
+	padding: 1rem;
+	padding-top: 1rem;
+}
+main section.novedades{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 3rem;
+	padding: 1.5rem 0;
+}
+main section.novedades h2 {
+	width: 100%;
+	margin: 0 3rem;
+}
