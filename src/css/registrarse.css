@@ -1,0 +1,16 @@
+main section {
+	 text-align: center;
+}
+
+main section form {
+	width: 30rem;
+	gap: .7rem;
+	margin: .8rem auto;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	text-align: left;
+}
+main section form > *:last-child {
+	grid-column: 1 / -1;
+	margin: 0 auto;
+}
