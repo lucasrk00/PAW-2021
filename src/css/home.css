@@ -33,6 +33,11 @@ main section.solicitar-turno div form {
 	padding: 1rem;
 	padding-top: 1rem;
 }
+
+main section.solicitar-turno div form > input[type="submit"] {
+	grid-column: -2 / -1;
+}
+
 main section.novedades{
 	display: flex;
 	flex-wrap: wrap;
