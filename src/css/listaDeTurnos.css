@@ -12,10 +12,10 @@ main section table tr th {
 main section table tr:first-child {
 	border-bottom: 1px solid black;
 }
-main section table tr:nth-child(even) {
+main section table tr:nth-child(odd):not(:first-child) {
 	background-color: white;
 }
-main section table tr:nth-child(odd):not(:first-child) {
+main section table tr:nth-child(even){
 	background-color: var(--light-dark);
 }
 
@@ -33,4 +33,51 @@ main section ul {
 }
 main section table {
 	margin: .5rem 0;
+}
+
+@media (max-width: 650px) {
+	main section > *:is(p, ul, button) {
+		margin: 10px 1rem;
+	}
+	main section table {
+		box-sizing: border-box;
+		width: calc( 100% - 2rem); /* CSS No coopera */
+		margin: 1rem;
+	}
+	main section table tr {
+		display: block;
+		padding: 1rem;
+	}
+	main section table tr:first-child {
+		display: none;
+	}
+	main section table tr td {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		text-align: right;
+	}
+	main section table tr td::before {
+		text-align: left;
+		font-weight: bold;
+	}
+	main section table tr td:nth-child(1)::before {
+		content: "Fecha: "
+	}
+	main section table tr td:nth-child(2)::before {
+		content: "Hora: ";
+	}
+	main section table tr td:nth-child(3)::before {
+		content: "Profesional: "
+	}
+	main section table tr td:nth-child(4):before {
+		content: "Especialidad:"
+	}
+	main section table tr td:nth-child(5):before {
+		content: "Estado:"
+	}
+	main section table tr td:last-child > * {
+		grid-column: -2 / -1;
+		text-align: center;
+		margin-left: auto;
+	}
 }
