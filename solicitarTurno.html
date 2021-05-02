@@ -3,12 +3,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Solicitar Turno</title>
+	<link rel="stylesheet" type="text/css" href="./src/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="./src/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="./src/css/solicitarTurno.css" />
 </head>
 <body>
 	<!-- Header del sitio -->
 	<header>
 		<!-- Título  -->
-		<h1>Institución Pepito</h1>
+		<h1 class="logo"><span>UNLuPAW</span> Medical Group</h1>
 		<!-- Info del sitio -->
 		<address class="info">
 			<p><a href="tel:123456789">12345679</a></p>
@@ -34,55 +37,60 @@
 		<section>
 			<h2>Solicitar Turno</h2>
 			<form action="./" method="post">
-				<h2>Datos del turno:</h2>
-				<!-- Especialidad del Turno -->
-				<label for="especialidad">Especialidad* :</label>
-				<select name="especialidad" id="especialidad" required>
-					<option value="">Seleccione una especialidad</option>
-					<option value="dentista">Dentista</option>
-					<!-- Otras opciones -->
-					<option value="...">....</option>
-				</select>
+				<fieldset>
+					<legend>Datos del Turno:</legend> <!-- Se ve mal en chrome, si cambio el legend por el p-->
+					<!-- Especialidad del Turno -->
+					<label for="especialidad">Especialidad* :</label>
+					<select name="especialidad" id="especialidad" required>
+						<option value="">Seleccione una especialidad</option>
+						<option value="dentista">Dentista</option>
+						<!-- Otras opciones -->
+						<option value="...">....</option>
+					</select>
+		
+					<!-- Lista de profesionales disponibles para la especialidad -->
+					<label for="profesional">Profesional :</label>
+					<select name="profesional" id="profesional">
+						<option value="">Seleccione un profesional</option>
+						<option value="idProfesional">Dr. Ali Vefa</option>
+						<option value="idProfesional">Dr. Rivero Lucas</option>
+						<option value="idProfesional">Dr. Gregory Hose</option>
+					</select>
+		
+					<!-- Fecha del turno -->
+					<label for="fecha">Fecha* :</label>
+					<input type="date" name="fecha" id="fecha" required/>
+		
+					<!--Horario del turno-->
+					<label for="hora">Hora* :</label>
+					<input type="time" name="hora" id="hora" required/>
+				</fieldset>
 	
-				<!-- Lista de profesionales disponibles para la especialidad -->
-				<label for="profesional">Profesional :</label>
-				<select name="profesional" id="profesional">
-					<option value="">Seleccione un profesional</option>
-					<option value="idProfesional">Dr. Ali Vefa</option>
-					<option value="idProfesional">Dr. Rivero Lucas</option>
-					<option value="idProfesional">Dr. Gregory Hose</option>
-				</select>
-	
-				<!-- Fecha del turno -->
-				<label for="fecha">Fecha* :</label>
-				<input type="date" name="fecha" id="fecha" required/>
-	
-				<!--Horario del turno-->
-				<label for="hora">Hora* :</label>
-				<input type="time" name="hora" id="hora" required/>
-	
-				<h3>Datos del Paciente:</h3>
-	
-				<!-- Nombre y apellido del paciente -->
-				<label for="nombreape">Nombre y Apellido* :</label>
-				<input type="text" name="nombreape" id="nombreape" required placeholder="ej. Juan Pérez"/>
-	
-				<!-- Correo electrónico del paciente -->
-				<label for="email">Correo Electrónico* :</label>
-				<input type="email" name="email" id="email" required placeholder="ej. juan@ejemplo.com"/>
-	
-				<!-- Teléfono celular del paciente -->
-				<label for="phone">Teléfono Celular* :</label>
-				<input type="tel" name="phone" id="phone" required placeholder="ej. 111111111"/>
-	
-				<!-- Fecha de nacimiento del paciente -->
-				<label for="nacimiento">Fecha de Nacimiento* :</label>
-				<input type="date" name="nacimiento" id="nacimiento" required />
-	
-				<!-- Boton que limpia los campos del formulario -->
-				<button>Limpiar</button>
-				<!-- Botón que envia el formulario -->
-				<input type="submit" value="Solicitar Turno"/>
+				<fieldset>
+					<legend>Datos del Paciente: </legend> <!-- Se ve mal en chrome, si cambio el legend por el p-->
+		
+					<!-- Nombre y apellido del paciente -->
+					<label for="nombreape">Nombre y Apellido* :</label>
+					<input type="text" name="nombreape" id="nombreape" required placeholder="ej. Juan Pérez"/>
+		
+					<!-- Correo electrónico del paciente -->
+					<label for="email">Correo Electrónico* :</label>
+					<input type="email" name="email" id="email" required placeholder="ej. juan@ejemplo.com"/>
+		
+					<!-- Teléfono celular del paciente -->
+					<label for="phone">Teléfono Celular* :</label>
+					<input type="tel" name="phone" id="phone" required placeholder="ej. 111111111"/>
+		
+					<!-- Fecha de nacimiento del paciente -->
+					<label for="nacimiento">Fecha de Nacimiento* :</label>
+					<input type="date" name="nacimiento" id="nacimiento" required />
+				</fieldset>
+				<fieldset>
+					<!-- Boton que limpia los campos del formulario -->
+					<button>Limpiar</button>
+					<!-- Botón que envia el formulario -->
+					<input type="submit" value="Solicitar Turno"/>
+				</fieldset>
 			</form>
 		</section>
 	</main>

@@ -1,0 +1,22 @@
+main section form {
+	display: flex;
+	gap: 1rem;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+main section form fieldset {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	row-gap: .5rem;
+}
+main section form fieldset legend {
+	grid-column: 1 / -1;
+	font-weight: bold;
+	font-size: 1.3rem;
+}
+
+main section form fieldset:last-child {
+	display: block;
+	width: 100%;
+	text-align: center;
+}
