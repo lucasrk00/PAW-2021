@@ -93,6 +93,18 @@ footer address a {
 	text-decoration: none;
 }
 
+/* Links / anchors */
+a, button.link, input[type="submit"].link {
+	padding: 0;
+	margin: 0;
+	border: none;
+	background-color: transparent;
+	color: var(--primary);
+	text-decoration: none;
+}
+a:hover, button.link:hover, input[type="submit"].link:hover {
+	text-decoration: underline;
+}
 /* BUTTONS */
 button, input[type="submit"], a.button {
 	background-color: white;
