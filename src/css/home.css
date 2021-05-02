@@ -56,3 +56,52 @@ main section.novedades h2 {
 	width: 100%;
 	margin: 0 3rem;
 }
+
+@media (max-width: 650px) {
+	main section.solicitar-turno {
+		background-image: none;
+		padding: 0;
+		height: auto;
+	}
+	main section.solicitar-turno div {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		color: white;
+		background-color: transparent;
+		border-radius: 0;
+	}
+	main section.solicitar-turno div h2 {
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+	main section.solicitar-turno div form {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem 0;
+		padding: 1rem;
+		padding-top: 1rem;
+	}
+	main section.solicitar-turno div form label{
+		color: black;
+	}
+	main section.solicitar-turno div form>input[type="submit"] {
+		height: 2.5rem;
+		margin: 0 2.5rem;
+		margin-top: 1rem;
+		/*width: 15rem;*/
+	}
+
+	/* NOVEDADES */
+	main section.novedades {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 2rem;
+		padding-top: 0;
+	}
+	main section.novedades h2 {
+		width: 100%;
+		margin: 0;
+	}
+}
