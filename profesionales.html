@@ -3,12 +3,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Profesionales</title>
+	<link rel="stylesheet" type="text/css" href="./src/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="./src/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="./src/css/profesionales.css" />
 </head>
 <body>
 	<!-- Header del sitio -->
 	<header>
 		<!-- Título  -->
-		<h1>Institución Pepito</h1>
+		<h1 class="logo"><span>UNLuPAW</span> Medical Group</h1>
 		<!-- Info del sitio -->
 		<address class="info">
 			<p><a href="tel:123456789">12345679</a></p>
@@ -36,32 +39,56 @@
 			<!-- Título -->
 			<h2>Profesionales</h2>
 			<!-- Input de búsqueda -->
-			<input type="text" name="busquedaprofe" id="busquedaprofe" placeholder="Ingresar nombre/apellido/especialidad"/>
-			<!-- Botón de búsqueda -->
-			<input type="submit" value="Buscar">
+			<form action="./" method="POST">
+				<input type="text" name="busquedaprofe" id="busquedaprofe" placeholder="Ingresar nombre/apellido/especialidad"/>
+				<!-- Botón de búsqueda -->
+				<input class="secondary" type="submit" value="Buscar">
+			</form>
 	
 			<!-- x3 información de los profesionales -->
-			<ul>
-				<li>
-					<div class="profesional">
-						<!-- Imagen de perfil del profesional -->
-						<img src="..." alt="Profesional">
-						<!-- Nombre del profesional -->
-						<p><strong>Nombre profesional</strong></p>
-						<!-- Especialidades -->
-						<p>Especialidades:</p>
-						<!-- Estudios -->
-						<p>Estudios:</p>
-						<!-- Botón para solicitar turno con ese profesional -->
-						<button>Solicitar Turno</button>
-					</div>
+			<ul class="lista-profesionales">
+				<li class="profesional">
+					<!-- Imagen de perfil del profesional -->
+					<img src="src/images/profesional1.png" alt="Profesional">
+					<!-- Nombre del profesional -->
+					<p class="profesional-nombre">Nombre profesional</p>
+					<!-- Especialidades -->
+					<p class="profesional-especialidad">Especialidades:</p>
+					<!-- Estudios -->
+					<p class="profesional-estudio">Estudios:</p>
+					<!-- Botón para solicitar turno con ese profesional -->
+					<button class="secondary">Solicitar Turno</button>
+				</li>
+				<li class="profesional">
+					<!-- Imagen de perfil del profesional -->
+					<img src="src/images/profesional2.jpg" alt="Profesional">
+					<!-- Nombre del profesional -->
+					<p class="profesional-nombre">Nombre profesional</p>
+					<!-- Especialidades -->
+					<p class="profesional-especialidad">Especialidades:</p>
+					<!-- Estudios -->
+					<p class="profesional-estudio">Estudios:</p>
+					<!-- Botón para solicitar turno con ese profesional -->
+					<button class="secondary">Solicitar Turno</button>
+				</li>
+				<li class="profesional">
+					<!-- Imagen de perfil del profesional -->
+					<img src="src/images/profesional3.jpg" alt="Profesional">
+					<!-- Nombre del profesional -->
+					<p class="profesional-nombre">Nombre profesional</p>
+					<!-- Especialidades -->
+					<p class="profesional-especialidad">Especialidades:</p>
+					<!-- Estudios -->
+					<p class="profesional-estudio">Estudios:</p>
+					<!-- Botón para solicitar turno con ese profesional -->
+					<button class="secondary">Solicitar Turno</button>
 				</li>
 			</ul>
 	
 			<!-- Paginado -->
 			<ul class="paginacion">
-				<li>
-					<a class="active" href="?page=1">1</a>
+				<li class="active" >
+					<a href="?page=1">1</a>
 				</li>
 				<li>
 					<a href="?page=2">2</a>
@@ -72,9 +99,9 @@
 				<li>
 					<a href="?page=4">4</a>
 				</li>
-				<li>...</li>
-				<li>
-					<a href="?page=123">Last page</a>
+				<li class="more">...</li>
+				<li class="last">
+					<a href="?page=123">15</a>
 				</li>
 			</ul>
 		</section>
@@ -83,7 +110,7 @@
 	<!-- Footer del sitio -->
 	<footer>
 		<!-- Título  -->
-		<h4>Institución Pepito</h4>
+		<h4 class="logo"><span>UNLuPAW</span> Medical Group</h4>
 		<!-- Info del sitio -->
 		<address class="info">
 			<p><a href="tel:123456789">12345679</a></p>
