@@ -20,3 +20,34 @@ main section form fieldset:last-child {
 	width: 100%;
 	text-align: center;
 }
+
+@media (max-width: 650px) {
+	main section {
+		min-height: 40rem;
+	}
+	main section form {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding: 0 1rem;
+	}
+	main section form fieldset {
+		display: flex;
+		flex-direction: column;
+	}
+	main section form fieldset legend {
+		margin-bottom: 0.5rem;
+	}
+
+	main section form fieldset >*:not(legend) {
+		margin: 0 0.2rem;
+	}
+	main section form fieldset button {
+		width: 8rem;
+		height: 2rem;
+	}
+	main section form fieldset>input[type="submit"] {
+		width: 8rem;
+		height: 2rem;
+	}
+}
