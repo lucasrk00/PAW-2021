@@ -1,7 +1,14 @@
 main {
-	
+	margin: 0;
 }
-section.solicitar-turno {
+main section {
+	padding: 0;
+	background-color: transparent;
+}
+main section h2 {
+	margin:0;
+}
+main section.solicitar-turno {
 	background-image: url('../images/home-image.png');
 	background-size: 100%;
 	background-position: left;
