@@ -12,7 +12,6 @@ main section.profesionales form input[type="text"]{
 main section.profesionales ul.lista-profesionales {
 	display: flex;
 	flex-direction: column;
-	border-top: 2px solid rgba(0, 0, 0, .8);
 }
 
 main section.profesionales ul.lista-profesionales li.profesional {
@@ -24,6 +23,9 @@ main section.profesionales ul.lista-profesionales li.profesional {
 	padding: 1rem 1.5rem;
 	align-items: center;
 	grid-template-columns: auto 5fr 1fr;
+}
+main section.profesionales ul.lista-profesionales li.profesional:nth-child(1) {
+	border-top: 2px solid rgba(0, 0, 0, .8);
 }
 main section.profesionales ul.lista-profesionales li.profesional:nth-child(even) {
 	background-color: white;
@@ -54,4 +56,53 @@ main section.profesionales ul.lista-profesionales li.profesional p.profesional-e
 }
 main section.profesionales ul.lista-profesionales li.profesional p.profesional-estudio {
 	grid-area: studies;
+}
+
+@media (max-width: 650px) {
+	main {
+		padding-bottom: 1.5rem;
+	}
+	main section.profesionales {
+		gap: 0;
+		display: flex;
+		flex-direction: column;
+		background-color: white;
+		min-height: rem;
+	}
+
+	main section.profesionales h2 {
+		margin: 0;
+	}
+	main section.profesionales>*:not(h2){
+		padding: 0 1rem;
+	}
+	main section.profesionales ul.lista-profesionales {
+		display: flex;
+		flex-direction: column;
+		border-top: none;
+	}
+
+	main section.profesionales ul.lista-profesionales li.profesional{
+		display: grid;
+		grid-template-areas:
+			"image name"
+			"image description"
+			"image studies"
+			"button button";
+		grid-template-columns: auto 1fr;
+		padding: 0.5rem 1rem;
+	}
+	main section.profesionales ul.lista-profesionales li.profesional button {
+		margin: auto;
+		margin-top: 1rem;
+	}
+
+	main section.profesionales ul.paginacion {
+		display: flex;
+		justify-content: center;
+		margin: 1.5rem 0;
+	}
+	main section.profesionales ul.lista-profesionales li.profesional img {
+		margin-right: 0.4rem;
+	}
 }
