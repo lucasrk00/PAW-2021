@@ -125,6 +125,7 @@ article.novedad {
 	background-color: white;
 	text-align: center;
 	display: inline-block;
+	box-shadow: 1px 1px 3px 0px #0000004f;
 }
 article.novedad > *{
 	margin-bottom: 0.3rem;
