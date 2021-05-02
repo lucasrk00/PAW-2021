@@ -291,6 +291,10 @@ main section h2 {
 		font-size: 1.5rem;
 		padding: .6rem 1.5rem;
 	}
+
+	ul.paginacion {
+		justify-content: center;
+	}
 }
 /* main, header, footer {
 	margin: 0 auto;
