@@ -1,0 +1,12 @@
+main section {
+	text-align: center;
+}
+main section form {
+	text-align: center;
+	margin:.8rem 0;
+}
+main section form > input{
+	margin: 0 auto;
+	display: block;
+	margin: .7rem auto;
+}
