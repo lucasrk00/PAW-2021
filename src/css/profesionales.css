@@ -37,7 +37,7 @@ main section.profesionales ul.lista-profesionales li.profesional:nth-child(odd) 
 main section.profesionales ul.lista-profesionales li.profesional button {
 	grid-area: button;
 	margin-left: auto;
-	height: 2rem;
+	min-height: 2rem;
 }
 main section.profesionales ul.lista-profesionales li.profesional img {
 	grid-area: image;
