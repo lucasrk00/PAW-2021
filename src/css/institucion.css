@@ -2,40 +2,64 @@
 main {
 	max-width: 1200px;
 }
-
-main section.institucion h1{
-	display: grid;
-	place-items: center;
-}
 main section.institucion h2 {
 	margin-top: 3rem;
-}
-
-main section.institucion img {
-	width: 30rem;
-	height: auto;
-	margin: 0 1rem;
-	display: inline-block;
-}
-main section.institucion img:last-of-type {
-	width: 25rem;
-	height: auto;
-	margin: 0 1rem;
-	display: inline-block;
 }
 main section.institucion p {
 	text-align: justify;
 	margin: 0 1rem;
 }
-main section.institucion p:first-of-type {
+main section.institucion > * {
+	padding: 0;
+}
+/* Area acerca-institucion */
+main section.institucion section.acerca-institucion {
+	display: grid;
+	grid-template-areas: 
+		"titulo titulo"
+		"texto imagen";
+	grid-template-columns: 2fr 1fr;
+}
+main section.institucion section.acerca-institucion > h1 {
+	display: grid;
+	place-items: center;
+	grid-area: titulo;
+}
+main section.institucion section.acerca-institucion > img {
+	max-width: 30rem;
+	height: auto;
+	margin: 0 1rem;
+	grid-area: imagen;
+}
+main section.institucion section.acerca-institucion > p {
 	width: auto;
-	max-width: 35rem;
 	display: inline-block;
+	grid-area: texto;
 }
-main section.institucion p:last-of-type {
-	width: auto;
-	max-width: 35rem;
+
+/* Area misión y visión */
+main section.institucion section.mision-vision {
+	display: grid;
+	grid-template-areas:
+		"titulo titulo"
+		"imagen texto";
+	grid-template-columns: 1fr 2fr;
 }
+main section.institucion section.mision-vision > h2 {
+	grid-area: titulo;
+}
+
+main section.institucion section.mision-vision > img {
+	max-width: 25rem;
+	height: auto;
+	margin: 0 1rem;
+	grid-area: imagen;
+}
+main section.institucion section.mision-vision > p {
+	display: block;
+	grid-area: texto;
+}
+
 main section.institucion h1::after {
 	content: "";
 	background-color: var(--primary);
@@ -58,6 +82,48 @@ main section.institucion h2::after {
 	display: flex;
 }
 
-main section.institucion h2:last-of-type::after {
+main section.institucion section.mision-vision > h2::after {
 	background-color: var(--light-blue);
+}
+
+@media (max-width: 650px) {
+	main section.institucion {
+		background-color: white;
+		display: flex;
+		flex-direction: column;
+	}
+	main section.institucion section.acerca-institucion{
+		display: flex;
+		flex-direction: column;
+	}
+	main section.institucion section.objetivos {
+		display: flex;
+		flex-direction: column;
+	}
+	main section.institucion section.mision-vision {
+		display: flex;
+		flex-direction: column;
+	}
+
+	main section.institucion section.acerca-institucion > h1 {
+		background-color: var(--alternative);
+		color: white;
+		padding-top: 1rem;
+	}
+	main section.institucion section.acerca-institucion>h1::after {
+		margin-bottom: 0.6rem;
+	}
+
+	main section.institucion h2 {
+		margin: 1rem 0;
+	}
+	main section.institucion h2::after {
+		margin-bottom: 0;
+	}
+
+	main section.institucion p {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+	}
+
 }
