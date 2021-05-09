@@ -21,7 +21,7 @@ main section form fieldset:last-child {
 	text-align: center;
 }
 
-@media (max-width: 650px) {
+@media screen and (max-width: 650px) {
 	main section {
 		min-height: 40rem;
 	}

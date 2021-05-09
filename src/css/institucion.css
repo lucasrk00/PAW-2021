@@ -86,7 +86,7 @@ main section.institucion section.mision-vision > h2::after {
 	background-color: var(--light-blue);
 }
 
-@media (max-width: 650px) {
+@media screen and (max-width: 650px) {
 	main section.institucion {
 		background-color: white;
 		display: flex;

@@ -34,7 +34,7 @@ main section ul li:nth-child(odd){
 	background-color: var(--light-dark)
 }
 
-@media (max-width: 650px) {
+@media screen and (max-width: 650px) {
 	main {
 		padding-bottom: 1.5rem;
 	}

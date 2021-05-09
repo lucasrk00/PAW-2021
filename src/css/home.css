@@ -57,7 +57,7 @@ main section.novedades h2 {
 	margin: 0 3rem;
 }
 
-@media (max-width: 650px) {
+@media screen and (max-width: 650px) {
 	main section.solicitar-turno {
 		background-image: none;
 		padding: 0;

@@ -58,7 +58,7 @@ main section.profesionales ul.lista-profesionales li.profesional p.profesional-e
 	grid-area: studies;
 }
 
-@media (max-width: 650px) {
+@media screen and (max-width: 650px) {
 	main {
 		padding-bottom: 1.5rem;
 	}

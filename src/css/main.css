@@ -82,7 +82,7 @@ header nav ul li a {
 	color: var(--primary);
 	text-decoration: none;
 }
-@media (max-width: 650px){
+@media screen and (max-width: 650px){
 	header {
 		display: block;
 		width: 100%;
@@ -277,7 +277,7 @@ main section {
 main section h2 {
 	margin-bottom: .8rem;
 }
-@media (max-width: 650px) {
+@media screen and (max-width: 650px) {
 	main {
 		margin: 0;
 	}

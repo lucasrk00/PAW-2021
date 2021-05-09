@@ -35,7 +35,49 @@ main section table {
 	margin: .5rem 0;
 }
 
-@media (max-width: 650px) {
+@media print {
+	body {
+		background-color: white;
+		font-size: 16pt;
+		font-family: serif;
+		line-height: 24pt;
+	}
+	header {
+		display: block;
+	}
+	header address,
+	header nav,
+	a.button,
+	button {
+		display: none;
+	}
+	main {
+		margin: 0;
+	}
+	.logo span, address.info, address.info p a {
+		color: #000;
+	}
+	h1,h2,h3,h4,h5,h6 {
+		color: #000;
+		font-size: 24pt;
+		line-height: 30pt;
+		margin: 0;
+	}
+	h1 {
+		font-size: 34pt;
+		margin: 0 0 20pt;
+		text-align: center;
+	}
+	h4 {
+		font-size: 20pt;
+	}
+	address.info p {
+		margin: 0;
+	}
+}
+
+
+@media screen and (max-width: 650px) {
 	main section > *:is(p, ul, button) {
 		margin: 10px 1rem;
 	}
