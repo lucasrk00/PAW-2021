@@ -278,8 +278,7 @@ input[type="text"].search:focus{
 
 /* INPUTS */
 select,
-input:not(input[type="submit"]):not(input[type="text"].search) {
-	color: var(--secondary);
+input:not(input[type="submit"], input[type="text"].search, input[type="checkbox"]) {
 	padding: 1px 5px;
 	height: 1.5rem;
 	box-sizing: border-box;
