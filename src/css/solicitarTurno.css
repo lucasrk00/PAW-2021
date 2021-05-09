@@ -32,11 +32,11 @@ main section form fieldset:last-child {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		padding: 0 1rem;
+		padding: 1rem;
+		gap: 1.5rem;
 	}
 	main section form fieldset {
-		display: flex;
-		flex-direction: column;
+		grid-template-columns: 1fr;
 	}
 	main section form fieldset legend {
 		margin-bottom: 0.5rem;
@@ -44,6 +44,10 @@ main section form fieldset:last-child {
 
 	main section form fieldset >*:not(legend) {
 		margin: 0 0.2rem;
+	}
+	main section form fieldset > label {
+		place-self: start;
+		margin-top: 1rem;
 	}
 	main section form fieldset button {
 		width: 8rem;
