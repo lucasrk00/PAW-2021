@@ -1,6 +1,9 @@
 main section {
 	text-align: center;
 }
+main section h2 {
+	text-align: left;
+}
 main section form {
 	display: inline-block;
 	text-align: center;
@@ -14,4 +17,15 @@ main section form > input{
 	margin: 0 auto;
 	display: block;
 	margin: .7rem auto;
+}
+
+@media screen and (max-width: 650px) {
+	main section form {
+		width: 100%;
+		padding: 1rem;
+		box-sizing: border-box;
+	}
+	main section form input {
+		width: 100%;
+	}
 }
