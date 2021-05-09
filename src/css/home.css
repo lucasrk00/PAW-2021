@@ -53,8 +53,9 @@ main section.novedades{
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	gap: 3rem;
+	gap: 1rem;
 	padding: 1.5rem 0;
+	margin: 1rem;
 }
 main section.novedades h2 {
 	width: 100%;

@@ -3,9 +3,8 @@ main section table {
 }
 main section table tr {
 	text-align: left;
-	padding:0.5rem 0;
+	padding: 0.5rem 0;
 }
-
 main section table tr th {
 	font-weight: bold;
 }
@@ -20,7 +19,7 @@ main section table tr:nth-child(even){
 }
 
 main section table tr th, main section table tr td {
-	padding: .3rem 0;
+	padding: .3rem;
 }
 
 main section table tr td:last-child{
