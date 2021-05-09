@@ -108,17 +108,19 @@ main section.institucion section.mision-vision > h2::after {
 	main section.institucion section.acerca-institucion > h1 {
 		background-color: var(--alternative);
 		color: white;
-		padding-top: 1rem;
+		padding: 0.6rem 1rem;
 	}
-	main section.institucion section.acerca-institucion>h1::after {
-		margin-bottom: 0.6rem;
-	}
-
 	main section.institucion h2 {
 		margin: 1rem 0;
 	}
+	main section.institucion h2 +p {
+		margin-top: 0;
+	}
 	main section.institucion h2::after {
-		margin-bottom: 0;
+		display: none;
+	}
+	main section.institucion h1::after {
+		display: none;
 	}
 
 	main section.institucion p {
