@@ -276,6 +276,15 @@ input[type="text"].search:focus{
 	border: 1px solid rgba(0,0,0, .8);
 }
 
+/* INPUTS */
+select,
+input:not(input[type="submit"]):not(input[type="text"].search) {
+	color: var(--secondary);
+	padding: 1px 5px;
+	height: 1.5rem;
+	box-sizing: border-box;
+}
+
 /* NOVEDAD */
 article.novedad {
 	border: 0px solid black;

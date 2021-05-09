@@ -9,6 +9,9 @@ main section form fieldset {
 	grid-template-columns: 1fr 1fr;
 	row-gap: .5rem;
 }
+main section form fieldset > label {
+	place-self: center start;
+}
 main section form fieldset legend {
 	grid-column: 1 / -1;
 	font-weight: bold;
