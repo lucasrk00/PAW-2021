@@ -2,8 +2,13 @@ main section {
 	text-align: center;
 }
 main section form {
+	display: inline-block;
 	text-align: center;
 	margin:.8rem 0;
+}
+main section form label {
+	text-align: left;
+	display: block;
 }
 main section form > input{
 	margin: 0 auto;

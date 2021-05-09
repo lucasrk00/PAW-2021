@@ -14,3 +14,12 @@ main section form > *:last-child {
 	grid-column: 1 / -1;
 	margin: 0 auto;
 }
+
+@media screen and (max-width: 650px) {
+	main section form {
+		width: 100%;
+		grid-template-columns: 1fr;
+		box-sizing: border-box;
+		padding: 1rem;
+	}
+}
