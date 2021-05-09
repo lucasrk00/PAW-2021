@@ -25,7 +25,7 @@ main section.solicitar-turno div {
 	width: 25rem;
 	border-radius: 8px;
 	color: white;
-	background-color:rgba(0,0,0,.2);
+	background-color:rgba(0,0,0,.1);
 }
 main section.solicitar-turno div h2 {
 	background-color: var(--alternative);
@@ -43,6 +43,10 @@ main section.solicitar-turno div form {
 
 main section.solicitar-turno div form > input[type="submit"] {
 	grid-column: -2 / -1;
+}
+main section.solicitar-turno div form>label {
+	display: flex;
+	align-items: center;
 }
 
 main section.novedades{
