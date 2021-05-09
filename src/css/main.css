@@ -355,6 +355,15 @@ main section {
 main section h2 {
 	margin-bottom: .8rem;
 }
+/* main:not(.home) section h2::before {
+	content: "";
+	height: 1rem;
+	width: 10px;
+	background-color: var(--primary);
+	display: inline-block;
+	transform: skewX(32deg);
+	margin-right: .5rem;
+} */
 @media screen and (max-width: 650px) {
 	main {
 		margin: 0;
@@ -368,6 +377,9 @@ main section h2 {
 		color: white;
 		font-size: 1.5rem;
 		padding: .6rem 1rem;
+	}
+	main:not(.home) section h2:before {
+		display: none;
 	}
 
 	ul.paginacion {
