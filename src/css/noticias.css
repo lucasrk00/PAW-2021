@@ -10,4 +10,5 @@ main section h2 {
 
 main section ul.paginacion {
 	width: 100%;
+	margin-bottom: 1rem;
 }
