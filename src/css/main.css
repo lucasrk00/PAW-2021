@@ -355,7 +355,7 @@ main section {
 main section h2 {
 	margin-bottom: .8rem;
 }
-/* main:not(.home) section h2::before {
+ main:not(.home) section h2::before {
 	content: "";
 	height: 1rem;
 	width: 10px;
@@ -363,7 +363,7 @@ main section h2 {
 	display: inline-block;
 	transform: skewX(32deg);
 	margin-right: .5rem;
-} */
+} 
 @media screen and (max-width: 650px) {
 	main {
 		margin: 0;

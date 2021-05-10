@@ -19,9 +19,19 @@ main section form fieldset legend {
 }
 
 main section form fieldset:last-child {
-	display: block;
+	display: flex;
 	width: 100%;
 	text-align: center;
+	justify-content: center;
+	gap: 4rem;
+}
+
+button, input[type="submit"] {
+	width: 10rem;
+}
+
+button {
+	background-color: var(--secondary);
 }
 
 @media screen and (max-width: 650px) {
