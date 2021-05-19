@@ -336,7 +336,7 @@ ul.paginacion li > a {
 ul.paginacion li.active > a {
 	background-color: var(--primary);
 }
-ul.paginacion li:nth-last-child(2) {
+ul.paginacion li.separator {
 	display: flex;
 	align-items: flex-end;
 }

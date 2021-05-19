@@ -5,6 +5,7 @@ namespace Paw\App\Controllers;
 use Paw\App\Controllers\BaseController;
 use Paw\Core\Request;
 use Exception;
+use Paw\Core\Controllers\PaginationController;
 
 class RoutesController extends BaseController {
 
@@ -23,31 +24,6 @@ class RoutesController extends BaseController {
 		return $noticias;
 	}
 
-	private function generatePagination($lastPage, $num = 5, $currentPage = 1) {
-		if ($currentPage < 1) throw new Exception("Min value for current page is 1");
-		if ($currentPage > $lastPage) throw new Exception("Current page cannot be grater than  the max value");
-		$half = intdiv($num, 2);
-		// $start = $currentPage >= $half ? $currentPage - $half : $half - $currentPage;
-		$start = $currentPage - $half;
-		$end = $currentPage + ($half);
-
-		if ($end >= $lastPage) {
-			$end = $lastPage - 1;
-			$start = $end - $num + 1;
-		} else if ($start < 1) {
-			$start = 1;
-			$end = $start + $num - 1;
-		}
-
-		$pages = array();
-
-		return [
-			"pageStart" => $start,
-			"pageEnd" => $end,
-			"currentPage" => $currentPage,
-			"lastPage" => $lastPage
-		];
-	}
 
 	public function index() {
 		$noticias = $this->getNoticias(3);
@@ -71,15 +47,17 @@ class RoutesController extends BaseController {
 		$titulo = "Noticias";
 		$noticias = $this->getNoticias(40);
 		$page = $request->query()['page'] ?? 1;
-		$pagination = $this->generatePagination(40, 5, $page);
+		$pagination = PaginationController::generatePagination(40, 5, $page);
 		require $this->viewPath . '/noticias.view.php';
 	}
 	public function obrasSociales() {
 		$titulo = "Obras Sociales";
 		require $this->viewPath . '/obrasSociales.view.php';
 	}
-	public function profesionales() {
+	public function profesionales(Request $request) {
 		$titulo = "Profesionales";
+		$page = $request->query()['page'] ?? 1;
+		$pagination = PaginationController::generatePagination(4, 5, $page);
 		require $this->viewPath . '/profesionales.view.php';
 	}
 	public function registrarse() {
