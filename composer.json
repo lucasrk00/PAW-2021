@@ -1,0 +1,25 @@
+{
+    "name": "paw/paw-2021",
+    "description": "TP de paw",
+    "authors": [
+        {
+            "name": "Facundo Silva",
+            "email": "silva.facundo13@gmail.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Rivero Kononik Lucas",
+            "email": "lucasrk00@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "~7.4",
+        "filp/whoops": "^2.12"
+    },
+    "autoload": {
+        "psr-4": {
+            "Paw\\": "src/"
+        }
+    }
+}
