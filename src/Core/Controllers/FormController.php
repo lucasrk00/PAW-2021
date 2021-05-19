@@ -1,0 +1,78 @@
+<?php
+namespace Paw\Core\Controllers;
+
+use Paw\Core\Exceptions\EmptyRequiredField;
+use Paw\Core\Exceptions\WrongFieldType;
+use Exception;
+
+class FormController {
+	public static function validateFields($data, $fields) {
+		foreach ($fields as $fieldName => $field) {
+			$exists = array_key_exists($fieldName, $data);
+
+			if ($field['required'] && (!$exists || empty($data[$fieldName]))) {
+				throw new EmptyRequiredField("El campo \"" . $fieldName . "\" es obligatorio");
+			} else if (!$field['required'] && !$exists) {
+				continue;
+			}
+
+			$fieldValue = FormController::validateInput($data[$fieldName]);
+
+			$isValidType = true;
+			switch ($field['type']) {
+				case 'date':
+					$isValidType = preg_match( "/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/", $fieldValue) > 0;
+					break;
+				case 'time':
+					$isValidType = preg_match("/^[0-2][0-9]:[0-6][0-9]$/", $fieldValue) > 0;
+				case 'email':
+					$isValidType = filter_var($fieldValue, FILTER_VALIDATE_EMAIL);
+					break;
+				case 'phone':
+					$isValidType = preg_match("/^[0-9]*$/", $fieldValue) > 0;
+					break;
+				case 'integer':
+				case 'float':
+					// TODO:
+					break;
+				default:
+					$isValidType = gettype($fieldValue) == $field['type'];
+					break;
+			}
+			if (!$isValidType) {
+				throw new WrongFieldType("El campo \"" . $fieldName . "\" debe ser de tipo \"" . $field['type'] . "\"");
+			}
+		}
+	}
+	public static function validateInput($value) {
+		$value = trim($value);
+		$value = stripslashes($value);
+		$value = htmlspecialchars($value);
+
+		return $value;
+	}
+	public static function validateFile($file, $type, $maxSize = 10) {
+		$isValidType = true;
+		switch ($type) {
+			case 'image':
+				$isValidType = FormController::isImage($file);
+				break;
+			default:
+				// TODO: ...
+				break;
+		}
+		if (!$isValidType) {
+			throw new WrongFieldType("El archivo debe ser de tipo: ". $type);
+		}
+		$fileSize = (fileSize($file['tmp_name'])/1000)/1000;
+		if (isset($maxSize) && $fileSize > $maxSize) {
+			throw new Exception("El archivo debe pesar un máximo de " . $maxSize . "MB");
+		}
+
+		return $file;
+	}
+	public static function isImage($value) {
+		$validFileTypes = ['image/png', 'image/jpeg'];
+		return in_array($value['type'], $validFileTypes);
+	}
+}

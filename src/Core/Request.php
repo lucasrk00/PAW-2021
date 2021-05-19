@@ -29,4 +29,10 @@ class Request {
 			return $_POST;
 		}
 	}
+	public function file($fieldName) {
+		if ($_SERVER["REQUEST_METHOD"] == "POST" && array_key_exists($fieldName, $_FILES)) {
+			return $_FILES[$fieldName];
+		}
+		return null;
+	}
 }
