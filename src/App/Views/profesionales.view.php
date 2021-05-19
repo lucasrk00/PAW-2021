@@ -67,24 +67,7 @@
 			</ul>
 
 			<!-- Paginado -->
-			<ul class="paginacion">
-				<li class="active">
-					<a href="?page=1">1</a>
-				</li>
-				<li>
-					<a href="?page=2">2</a>
-				</li>
-				<li>
-					<a href="?page=3">3</a>
-				</li>
-				<li>
-					<a href="?page=4">4</a>
-				</li>
-				<li class="more">...</li>
-				<li class="last">
-					<a href="?page=123">15</a>
-				</li>
-			</ul>
+			<?php require 'parts/pagination.view.php' ?>
 		</section>
 	</main>
 

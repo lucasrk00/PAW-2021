@@ -33,19 +33,7 @@
 			</article>
 			<?php endforeach ; ?>
 			<!-- Paginado -->
-			<ul class="paginacion">
-				<?php
-					foreach( range($pagination["pageStart"], $pagination["pageEnd"]) as $page):
-				?>
-					<li class="<?php if ($page == $pagination["currentPage"]){ echo "active"; }?>">
-						<a href="?page=<?=$page?>"><?=$page?></a>
-					</li>
-				<?php endforeach; ?>
-				<li>...</li>
-				<li class="<?php if ($pagination["lastPage"] == $pagination["currentPage"]){ echo "active"; }?>">
-					<a href="?page=<?=$pagination["lastPage"]?>"><?=$pagination["lastPage"]?></a>
-				</li>
-			</ul>
+			<?php require 'parts/pagination.view.php' ?>
 		</section>
 	</main>
 
