@@ -18,7 +18,7 @@ main section form fieldset legend {
 	font-size: 1.3rem;
 }
 
-main section form fieldset:last-child {
+main section form fieldset:nth-last-of-type(-n+2) {
 	display: flex;
 	width: 100%;
 	text-align: center;

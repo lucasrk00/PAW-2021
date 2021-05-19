@@ -21,7 +21,8 @@ class FormController {
 			$isValidType = true;
 			switch ($field['type']) {
 				case 'date':
-					$isValidType = preg_match( "/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/", $fieldValue) > 0;
+					list($year, $month, $day) = explode('-', $fieldValue);
+					$isValidType = checkdate(intval($month), intval($day), intval($year));
 					break;
 				case 'time':
 					$isValidType = preg_match("/^[0-2][0-9]:[0-6][0-9]$/", $fieldValue) > 0;

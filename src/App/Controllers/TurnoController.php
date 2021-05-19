@@ -53,7 +53,7 @@ class TurnoController extends BaseController{
 
 		FormController::validateFields($datosTurno, FORM_FIELDS);
 
-		if (isset($file)) {
+		if (isset($file) && $file["size"] > 0) {
 			FormController::validateFile($file, 'image');
 		}
 
