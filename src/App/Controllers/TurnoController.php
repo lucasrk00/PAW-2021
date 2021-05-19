@@ -48,28 +48,38 @@ class TurnoController extends BaseController{
 				"type" => "date",
 				"required" => true
 			],
+			"estudioClinico" => [
+				"type" => "image",
+				"required" => false
+			]
 		]);
 
 		$this->solicitarTurnoView($request);
 	}
 	public function validateFields($data, $fields) {
-		foreach ($fields as $fieldName) {
-			$field = $fields[$fieldName];
-			$fieldValue = $this->validateInput($data[$fieldName]);
-			if ($field['required'] && (empty($fieldValue) || !isset($fieldValue))) {
+		foreach ($fields as $fieldName => $field) {
+			$exists = array_key_exists($fieldName, $data);
+
+			if ($field['required'] && (!$exists || empty($data[$fieldName]))) {
 				throw new EmptyRequiredField("El campo \"" . $fieldName . "\" es obligatorio");
+			} else if (!$field['required'] && $exists) {
+				continue;
 			}
-			
+
+			$fieldValue = $this->validateInput($data[$fieldName]);
+
 			$isValidType = true;
 			switch ($field['type']) {
 				case 'date':
-					$isValidType = preg_match( "^([0-2][1-9]|(3)[0-1])(\/)(((0)[1-9])|((1)[0-2]))(\/)\d{4}$", $fieldValue) > 0;
+					$isValidType = preg_match( "/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/", $fieldValue) > 0;
 					break;
+				case 'time':
+					$isValidType = preg_match("/^[0-2][0-9]:[0-6][0-9]$/", $fieldValue) > 0;
 				case 'email':
 					$isValidType = filter_var($fieldValue, FILTER_VALIDATE_EMAIL);
 					break;
 				case 'phone':
-					$isValidType = preg_match("^[0-9]*$", $fieldValue) > 0;
+					$isValidType = preg_match("/^[0-9]*$/", $fieldValue) > 0;
 					break;
 				default:
 					$isValidType = gettype($fieldValue) == $field['type'];
