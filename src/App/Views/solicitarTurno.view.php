@@ -24,27 +24,27 @@
 					<label for="especialidad">Especialidad* :</label>
 					<select name="especialidad" id="especialidad" required>
 						<option value="">Seleccione una especialidad</option>
-						<option value="dentista">Dentista</option>
-						<!-- Otras opciones -->
-						<option value="...">....</option>
+						<?php foreach($especialidades as $key => $label):?>
+						<option <?php if (isset($especialidad) && $key == $especialidad) { echo "selected"; } ?> value="<?=$key?>"><?=$label?></option>
+						<?php endforeach; ?>
 					</select>
 
 					<!-- Lista de profesionales disponibles para la especialidad -->
 					<label for="profesional">Profesional :</label>
 					<select name="profesional" id="profesional">
 						<option value="">Seleccione un profesional</option>
-						<option value="idProfesional">Dr. Ali Vefa</option>
-						<option value="idProfesional">Dr. Rivero Lucas</option>
-						<option value="idProfesional">Dr. Gregory Hose</option>
+						<?php foreach($profesionales as $key => $label):?>
+						<option <?php if (isset($profesional) && $key + 1 == $profesional) { echo "selected"; } ?> value="<?=intval($key) + 1?>"><?=$label?></option>
+						<?php endforeach; ?>
 					</select>
 
 					<!-- Fecha del turno -->
 					<label for="fecha">Fecha* :</label>
-					<input type="date" name="fecha" id="fecha" required />
-
+					<input type="date" name="fecha" id="fecha" value="<?=$fecha?>" required/>
+		
 					<!--Horario del turno-->
 					<label for="hora">Hora* :</label>
-					<input type="time" name="hora" id="hora" required />
+					<input type="time" name="hora" id="hora" value="<?=$hora?>" required/>
 				</fieldset>
 
 				<fieldset>

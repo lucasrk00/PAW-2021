@@ -20,8 +20,8 @@
 			<!-- Título -->
 			<h2>Profesionales</h2>
 			<!-- Input de búsqueda -->
-			<form action="./" method="POST">
-				<input type="text" class="search" name="busquedaprofe" id="busquedaprofe" placeholder="Ingresar nombre/apellido/especialidad" />
+			<form action="/profesionales" method="get">
+				<input type="text" class="search" name="search" id="search" placeholder="Ingresar nombre/apellido/especialidad" value="<?= $query ?>"/>
 				<!-- Botón de búsqueda -->
 				<input class="secondary" type="submit" value="Buscar">
 			</form>
@@ -38,7 +38,7 @@
 					<!-- Estudios -->
 					<p class="profesional-estudio">Estudios: Universidad Austral</p>
 					<!-- Botón para solicitar turno con ese profesional -->
-					<button class="secondary">Solicitar Turno</button>
+					<a class="button secondary" href="/solicitarTurno?profesional=1">Solicitar Turno</a>
 				</li>
 				<li class="profesional">
 					<!-- Imagen de perfil del profesional -->
@@ -50,7 +50,7 @@
 					<!-- Estudios -->
 					<p class="profesional-estudio">Estudios: Universidad de Buenos Aires</p>
 					<!-- Botón para solicitar turno con ese profesional -->
-					<button class="secondary">Solicitar Turno</button>
+					<a class="button secondary" href="/solicitarTurno?profesional=2">Solicitar Turno</a>
 				</li>
 				<li class="profesional">
 					<!-- Imagen de perfil del profesional -->
@@ -62,7 +62,7 @@
 					<!-- Estudios -->
 					<p class="profesional-estudio">Estudios: Universidad John Hopkins</p>
 					<!-- Botón para solicitar turno con ese profesional -->
-					<button class="secondary">Solicitar Turno</button>
+					<a class="button secondary" href="/solicitarTurno?profesional=3">Solicitar Turno</a>
 				</li>
 			</ul>
 

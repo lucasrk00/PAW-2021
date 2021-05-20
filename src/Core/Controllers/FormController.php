@@ -16,7 +16,7 @@ class FormController {
 				continue;
 			}
 
-			$fieldValue = FormController::validateInput($data[$fieldName]);
+			$fieldValue = $data[$fieldName];
 
 			$isValidType = true;
 			switch ($field['type']) {

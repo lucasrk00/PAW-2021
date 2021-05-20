@@ -17,7 +17,7 @@
 		<section class="solicitar-turno">
 			<div>
 				<h2>Solicitar turno</h2>
-				<form action="./" method="post">
+				<form action="/solicitarTurno" method="get">
 					<!-- Especialidad del Turno -->
 					<label for="especialidad">Especialidad:</label>
 					<select name="especialidad" id="especialidad" required>

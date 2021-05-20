@@ -46,7 +46,7 @@ class RoutesController extends BaseController {
 	public function noticias(Request $request) {
 		$titulo = "Noticias";
 		$noticias = $this->getNoticias(40);
-		$page = $request->query()['page'] ?? 1;
+		$page = $request->getQueryField('page') ?? 1;
 		$pagination = PaginationController::generatePagination(40, 5, $page);
 		require $this->viewPath . '/noticias.view.php';
 	}
@@ -56,7 +56,8 @@ class RoutesController extends BaseController {
 	}
 	public function profesionales(Request $request) {
 		$titulo = "Profesionales";
-		$page = $request->query()['page'] ?? 1;
+		$page = $request->getQueryField('page') ?? 1;
+		$query = $request ->getQueryField('search');
 		$pagination = PaginationController::generatePagination(4, 5, $page);
 		require $this->viewPath . '/profesionales.view.php';
 	}

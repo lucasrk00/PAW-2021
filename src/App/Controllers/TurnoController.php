@@ -43,8 +43,30 @@ define("FORM_FIELDS", [
 	]
 ]);
 class TurnoController extends BaseController{
+	public static function getEspecialidades() {
+		return [
+			"dentista" => "Dentista",
+			"doctor" => "Doctor"
+		];
+	}
+	public static function getProfesionales() {
+		return [
+			"Dr. Ali Vefa",
+			"Dr. Rivero Lucas",
+			"Dr. Gregory House"
+		];
+	}
 	public function solicitarTurnoView(Request $request) {
 		$titulo = "Solicitar Turno";
+		$especialidades = $this -> getEspecialidades();
+		$profesionales = $this -> getProfesionales();
+
+		$especialidad = $request->getQueryField('especialidad');
+		$profesional = $request->getQueryField('profesional');
+
+		$fecha = $request->getQueryField('fecha');
+		$hora = $request->getQueryField('hora');
+
 		require $this->viewPath . '/solicitarTurno.view.php';
 	}
 	public function solicitarTurno(Request $request) {
