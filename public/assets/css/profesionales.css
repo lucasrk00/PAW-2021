@@ -34,10 +34,10 @@ main section.profesionales ul.lista-profesionales li.profesional:nth-child(odd) 
 	background-color: var(--light-dark);
 }
 
-main section.profesionales ul.lista-profesionales li.profesional button {
+main section.profesionales ul.lista-profesionales li.profesional .button {
 	grid-area: button;
 	margin-left: auto;
-	min-height: 2rem;
+	padding: .5rem 1.5rem;
 }
 main section.profesionales ul.lista-profesionales li.profesional img {
 	grid-area: image;
@@ -92,7 +92,7 @@ main section.profesionales ul.lista-profesionales li.profesional p.profesional-e
 		grid-template-columns: auto 1fr;
 		padding: 0.5rem 1rem;
 	}
-	main section.profesionales ul.lista-profesionales li.profesional button {
+	main section.profesionales ul.lista-profesionales li.profesional a.button {
 		margin: auto;
 		margin-top: 1rem;
 	}
