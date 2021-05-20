@@ -17,6 +17,9 @@
 	<main>
 		<section>
 			<h2>Solicitar Turno</h2>
+			<?php
+			require 'parts/statusResultMessage.view.php'
+			?>
 			<form action="/solicitarTurno" method="post" enctype="multipart/form-data">
 				<fieldset>
 					<legend>Datos del Turno:</legend> <!-- Se ve mal en chrome, si cambio el legend por el p-->
@@ -24,8 +27,10 @@
 					<label for="especialidad">Especialidad* :</label>
 					<select name="especialidad" id="especialidad" required>
 						<option value="">Seleccione una especialidad</option>
-						<?php foreach($especialidades as $key => $label):?>
-						<option <?php if (isset($especialidad) && $key == $especialidad) { echo "selected"; } ?> value="<?=$key?>"><?=$label?></option>
+						<?php foreach ($especialidades as $key => $label) : ?>
+							<option <?php if (isset($especialidad) && $key == $especialidad) {
+										echo "selected";
+									} ?> value="<?= $key ?>"><?= $label ?></option>
 						<?php endforeach; ?>
 					</select>
 
@@ -33,18 +38,20 @@
 					<label for="profesional">Profesional :</label>
 					<select name="profesional" id="profesional">
 						<option value="">Seleccione un profesional</option>
-						<?php foreach($profesionales as $key => $label):?>
-						<option <?php if (isset($profesional) && $key + 1 == $profesional) { echo "selected"; } ?> value="<?=intval($key) + 1?>"><?=$label?></option>
+						<?php foreach ($profesionales as $key => $label) : ?>
+							<option <?php if (isset($profesional) && $key + 1 == $profesional) {
+										echo "selected";
+									} ?> value="<?= intval($key) + 1 ?>"><?= $label ?></option>
 						<?php endforeach; ?>
 					</select>
 
 					<!-- Fecha del turno -->
 					<label for="fecha">Fecha* :</label>
-					<input type="date" name="fecha" id="fecha" value="<?=$fecha?>" required/>
-		
+					<input type="date" name="fecha" id="fecha" value="<?= $fecha ?>" required />
+
 					<!--Horario del turno-->
 					<label for="hora">Hora* :</label>
-					<input type="time" name="hora" id="hora" value="<?=$hora?>" required/>
+					<input type="time" name="hora" id="hora" value="<?= $hora ?>" required />
 				</fieldset>
 
 				<fieldset>

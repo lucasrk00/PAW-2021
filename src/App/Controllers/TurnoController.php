@@ -2,11 +2,13 @@
 
 namespace Paw\App\Controllers;
 
+use Error;
 use Exception;
 use Paw\Core\Request;
 use Paw\Core\Controllers\FormController;
 use Paw\App\Controllers\BaseController;
-
+use Paw\Core\Exceptions\EmptyRequiredField;
+use Paw\Core\Exceptions\WrongFieldType;
 
 define("FORM_FIELDS", [
 	"especialidad" => [
@@ -15,7 +17,7 @@ define("FORM_FIELDS", [
 	],
 	"profesional" => [
 		"type" => "string",
-		"required" => true
+		"required" => false
 	],
 	"fecha" => [
 		"type" => "date",
@@ -56,7 +58,7 @@ class TurnoController extends BaseController{
 			"Dr. Gregory House"
 		];
 	}
-	public function solicitarTurnoView(Request $request) {
+	public function solicitarTurnoView(Request $request, $errorMessage = null) {
 		$titulo = "Solicitar Turno";
 		$especialidades = $this -> getEspecialidades();
 		$profesionales = $this -> getProfesionales();
@@ -67,19 +69,30 @@ class TurnoController extends BaseController{
 		$fecha = $request->getQueryField('fecha');
 		$hora = $request->getQueryField('hora');
 
+		$method = $request->method();
+		$successMessage = null;
+		if ($method == "POST" && !isset($errorMessage)) {
+			$successMessage = "Turno solicitado correctamente";
+		}
 		require $this->viewPath . '/solicitarTurno.view.php';
 	}
 	public function solicitarTurno(Request $request) {
 		$datosTurno = $request->data();
 		$file = $request->file('estudioClinico');
+		$errorMessage = null;
 
-		FormController::validateFields($datosTurno, FORM_FIELDS);
-
-		if (isset($file) && $file["size"] > 0) {
-			FormController::validateFile($file, 'image');
+		try {
+			FormController::validateFields($datosTurno, FORM_FIELDS);
+	
+			if (isset($file) && $file["size"] > 0) {
+				FormController::validateFile($file, 'image');
+			}
+		} catch (EmptyRequiredField $e) {
+			$errorMessage = $e->getMessage();
+		} catch (WrongFieldType $e) {
+			$errorMessage = $e->getMessage();
 		}
-
-		$this->solicitarTurnoView($request);
+		$this->solicitarTurnoView($request, $errorMessage);
 	}
 }
 

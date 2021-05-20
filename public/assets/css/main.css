@@ -10,6 +10,7 @@
 	--light-text: #707070;
 	--light-dark: #E8E8E8;
 	--danger: #DC3545;
+	--success: #4BB543;
 	--header-padding: 1.5rem;
 }
 
@@ -391,3 +392,26 @@ main section h2 {
 	max-width: 1440px;
 	box-sizing: border-box;
 } */
+
+/* ERROR */
+p.status-notification {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: .75rem 1.25rem;
+	border-radius: 5px;
+	border: 1px solid transparent;
+	width: auto;
+	margin: 1rem auto;
+}
+
+p.error-message {
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
+	color: #721c24;
+}
+p.success-message {
+	background-color: #d4edda;
+	border-color: #c3e6cb;
+	color: #155724;
+}
