@@ -36,7 +36,7 @@ class Request {
 	}
 	public function data() {
 		$postData = array();
-		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		if ($this->method() == "POST") {
 			foreach($_POST as $fieldName => $value) {
 				$postData[$fieldName] = FormController::validateInput($value);
 			}
@@ -44,7 +44,7 @@ class Request {
 		return $postData;
 	}
 	public function file($fieldName) {
-		if ($_SERVER["REQUEST_METHOD"] == "POST" && array_key_exists($fieldName, $_FILES)) {
+		if ($this->method() == "POST" && array_key_exists($fieldName, $_FILES)) {
 			return $_FILES[$fieldName];
 		}
 		return null;
