@@ -18,7 +18,6 @@ class Router {
 		if (!array_key_exists($method, $this->routes) || !array_key_exists($path, $this->routes[$method])) {
 			throw new NotFound;
 		}
-
 		return $this->routes[$method][$path];
 	}
 
@@ -36,25 +35,30 @@ class Router {
 		$this->loadRoute($path, $controller, "ERROR");
 	}
 
-	public function call($request) {
-		list($path, $httpMethod) = $request->route();
+	private function _call($path, $httpMethod, $request) {
 		list($controllerName, $method) = explode('@', $this->getController($path, $httpMethod));
 		
 		$controllerPath = "Paw\\App\\Controllers\\{$controllerName}";
 		$controller = new $controllerPath;
 		$controller -> $method($request);
 	}
+	public function call($request) {
+		list($path, $httpMethod) = $request->route();
+		return $this->_call($path, $httpMethod, $request);
+	}
+	public function callError($errorName, $request) {
+		return $this->_call($errorName, "ERROR", $request);
+	}
 	public function direct(Request $request) {
-
 		try {
 			http_response_code(200);
 			$this->call($request);
 		} catch (NotFound $e) {
 			http_response_code(404);
-			$this->call('notFound', 'ERROR');
+			$this->callError('notFound', $request);
 		} catch (Exception $e) {
 			throw $e; // TODO: Cambiar esto
-			$this->call('internal', 'ERROR');
+			$this->callError('internal', $request);
 		}
 	}
 }
