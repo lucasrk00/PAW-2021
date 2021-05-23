@@ -23,13 +23,15 @@ $router = new Router;
 /* GET */
 $router->get('/', 'RoutesController@index');
 $router->get('/institucion', 'RoutesController@institucion');
-$router->get('/listaDeTurnos', 'RoutesController@listaDeTurnos');
-$router->get('/noticias', 'RoutesController@noticias');
 $router->get('/obrasSociales', 'RoutesController@obrasSociales');
 $router->get('/profesionales', 'ProfesionalController@profesionales');
 
+$router->get('/noticias', 'RoutesController@noticias');
+$router->get('/noticia', 'RoutesController@noticia');
+
 $router->get('/solicitarTurno', 'TurnoController@solicitarTurnoView');
 $router->get('/confirmarTurno', 'TurnoController@confirmarTurnoView');
+$router->get('/listaDeTurnos', 'TurnoController@listaDeTurnosView');
 
 $router->get('/logout', 'AuthController@logout');
 $router->get('/login', 'AuthController@loginView');
