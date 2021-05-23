@@ -22,11 +22,20 @@ class FormController {
 
 			$fieldValue = $data[$fieldName];
 
+			$isValidDate = true;
 			$isValidType = true;
 			switch ($field['type']) {
 				case 'date':
 					list($year, $month, $day) = explode('-', $fieldValue);
 					$isValidType = checkdate(intval($month), intval($day), intval($year));
+					if ($isValidType) {
+						if (isset($field["min"])) {
+							$isValidDate = ($fieldValue > $field["min"]);
+						}
+						if ($isValidDate && isset($field["max"])) {
+							$isValidDate = ($fieldValue < $field["max"]);
+						}
+					}
 					break;
 				case 'time':
 					$isValidType = preg_match("/^[0-2][0-9]:[0-6][0-9]$/", $fieldValue) > 0;
@@ -49,6 +58,10 @@ class FormController {
 				if (isset($field['typeError'])) {
 					$error = $field['typeError'];
 				}
+				throw new WrongFieldType($error);
+			}
+			if (!$isValidDate) {
+				$error = "El campo \"". $fieldName . "\" no es una fecha válida";
 				throw new WrongFieldType($error);
 			}
 		}

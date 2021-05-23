@@ -26,6 +26,7 @@ define("FORM_FIELDS", [
 	],
 	"fecha" => [
 		"type" => "date",
+		"min" => date("Y-m-d"),
 		"required" => true
 	],
 	"hora" => [
@@ -50,6 +51,7 @@ define("FORM_FIELDS", [
 	],
 	"nacimiento" => [
 		"type" => "date",
+		"max" => date("Y-m-d"),
 		"required" => true
 	]
 ]);
@@ -105,10 +107,10 @@ class TurnoController extends BaseController{
 			}
 		} catch (EmptyRequiredField $e) {
 			$errorMessage = $e->getMessage();
-			$this->solicitarTurnoView($request, $errorMessage);
+			return $this->solicitarTurnoView($request, $errorMessage);
 		} catch (WrongFieldType $e) {
 			$errorMessage = $e->getMessage();
-			$this->solicitarTurnoView($request, $errorMessage);
+			return $this->solicitarTurnoView($request, $errorMessage);
 		}
 
 		$turno = new Turno;

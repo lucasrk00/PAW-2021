@@ -47,7 +47,7 @@
 
 					<!-- Fecha del turno -->
 					<label for="fecha">Fecha* :</label>
-					<input type="date" name="fecha" id="fecha" value="<?= $fecha ?>" required />
+					<input type="date" name="fecha" id="fecha" value="<?= $fecha ?>" required min="<?= date("Y-m-d") ?>" />
 
 					<!--Horario del turno-->
 					<label for="hora">Hora* :</label>
@@ -71,7 +71,7 @@
 
 					<!-- Fecha de nacimiento del paciente -->
 					<label for="nacimiento">Fecha de Nacimiento* :</label>
-					<input type="date" name="nacimiento" id="nacimiento" required />
+					<input type="date" name="nacimiento" id="nacimiento" required max="<?= date("Y-m-d") ?>" />
 				</fieldset>
 				<fieldset>
 					<input type="file" value="Adjuntar archivo" name="estudioClinico" id="estudioClinico" accept=".png, .jpg, .jpeg" />
