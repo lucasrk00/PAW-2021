@@ -94,7 +94,8 @@ class FormController {
 		return $file;
 	}
 	public static function isImage($value) {
-		$validFileTypes = ['image/png', 'image/jpeg'];
-		return in_array($value['type'], $validFileTypes);
+		$validFileTypes = array(IMAGETYPE_PNG, IMAGETYPE_JPEG);
+		$detectedType = exif_imagetype($value["tmp_name"]);
+		return in_array($detectedType, $validFileTypes);
 	}
 }
