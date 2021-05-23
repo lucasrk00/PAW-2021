@@ -41,6 +41,7 @@ $router->post('/login', 'AuthController@login');
 $router->post('/registrarse', 'AuthController@register');
 $router->post('/solicitarTurno', 'TurnoController@solicitarTurno');
 $router->post('/confirmarTurno', 'TurnoController@confirmarTurno');
+$router->post('/cancelarTurno', 'TurnoController@cancelarTurno');
 
 /* ERROR */
 $router->error('notFound', 'ErrorsController@notFound');
