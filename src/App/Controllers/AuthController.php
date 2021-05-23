@@ -95,6 +95,7 @@ class AuthController extends BaseController {
 		if (password_verify($data['password'], $usuario->password)) {
 			$_SESSION["logged"] = true;
 			$_SESSION["usuarioId"] = $usuario->id;
+			$_SESSION["nombreApellido"] = $usuario->persona->nombreApellido;
 			$_SESSION["creationDate"] = time();
 		}
 		return $this->loginView($request, $insensitiveData, "Email o contraseña incorrecta");

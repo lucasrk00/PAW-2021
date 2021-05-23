@@ -11,6 +11,7 @@ final class FirstMigration extends AbstractMigration
 		$tableProfesionales = $this->table('profesionales');
 		$tableProfesionales->addColumn('nombre', 'string')
 			->addColumn('estudios', 'string')
+			->addColumn('imagenUrl', 'string')
 			->addColumn('createdAt', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
 			->create();
 

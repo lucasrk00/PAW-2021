@@ -90,6 +90,7 @@ class Model {
 	protected static function createInstance($pk, $data) {
 		$instance = new static($pk);
 		$instance->set($data);
+		$instance->getExternals();
 		return $instance;
 	}
 	
