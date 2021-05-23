@@ -28,8 +28,12 @@ $router->get('/noticias', 'RoutesController@noticias');
 $router->get('/obrasSociales', 'ObrasSocialesController@obrasSociales');
 $router->get('/profesionales', 'ProfesionalController@profesionales');
 
+$router->get('/noticias', 'RoutesController@noticias');
+$router->get('/noticia', 'RoutesController@noticia');
+
 $router->get('/solicitarTurno', 'TurnoController@solicitarTurnoView');
 $router->get('/confirmarTurno', 'TurnoController@confirmarTurnoView');
+$router->get('/listaDeTurnos', 'TurnoController@listaDeTurnosView');
 
 $router->get('/logout', 'AuthController@logout');
 $router->get('/login', 'AuthController@loginView');
@@ -39,6 +43,7 @@ $router->post('/login', 'AuthController@login');
 $router->post('/registrarse', 'AuthController@register');
 $router->post('/solicitarTurno', 'TurnoController@solicitarTurno');
 $router->post('/confirmarTurno', 'TurnoController@confirmarTurno');
+$router->post('/cancelarTurno', 'TurnoController@cancelarTurno');
 
 /* ERROR */
 $router->error('notFound', 'ErrorsController@notFound');

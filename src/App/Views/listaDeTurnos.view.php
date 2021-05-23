@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 	<?php
-		require 'parts/head.view.php'
+	require 'parts/head.view.php'
 	?>
 	<link rel="stylesheet" type="text/css" href="/assets/css/listaDeTurnos.css" />
 </head>
+
 <body>
 	<!-- Header del sitio -->
 	<?php
-		require 'parts/header.view.php'
+	require 'parts/header.view.php'
 	?>
 	<main>
 		<section>
@@ -19,9 +21,9 @@
 			<ul>
 				<li>Fecha del Turno: 17/04/2021 al 30/04/2021</li>
 			</ul>
-	
+
 			<!-- Botón que muestra los filtros -->
-			<button>Filtros</button> 
+			<button>Filtros</button>
 			<table>
 				<tr>
 					<th>Fecha</th>
@@ -31,34 +33,36 @@
 					<th>Estado</th>
 					<th></th>
 				</tr>
-				<!-- Primer Turno -->
-				<tr>
-					<td>17/04/2021</td>
-					<td>18:00</td>
-					<td>Juan Perez</td>
-					<td>Dentista</td>
-					<td>Pendiente</td>
-					<td>
-						<a class="button danger" href="cancelar">Cancelar</a>
-					</td>
-				</tr>
-				<!-- ... -->
-				<tr>
-					<td>15/04/2021</td>
-					<td>18:00</td>
-					<td>Juan Perez</td>
-					<td>Dentista</td>
-					<td>Finalizado</td>
-					<td>
-						<a class="button danger disabled" href="cancelar">Cancelar</a>
-					</td>
-				</tr>
+				<?php foreach ($turnos as $turno) : ?>
+					<!-- Primer Turno -->
+					<tr>
+						<td><?= date('Y-m-d', strtotime($turno->fechaHora)) ?></td>
+						<td><?= date('H:m', strtotime($turno->fechaHora)) ?></td>
+						<td><?= $turno->profesional->nombre ?></td>
+						<td><?= $turno->especialidad->nombre ?></td>
+						<?php if ($turno->cancelado) : ?>
+							<td>Cancelado</td>
+						<?php else : ?>
+							<td><?= ($turno->fechaHora<date("Y-m-d H:m")) ? "Finalizado" : "Pendiente" ?></td>
+						<?php endif; ?>
+						<td>
+							<?php if ($turno->cancelado || $turno->fechaHora < date("Y-m-d H:m")) : ?>
+								<button disabled>Cancelar</button>
+							<?php else : ?>
+								<form action="/cancelarTurno?turno=<?= $turno->id ?>" method="post">
+									<button class="danger">Cancelar</button>
+								</form>
+							<?php endif; ?>
+						</td>
+					</tr>
+				<?php endforeach; ?>
 			</table>
 		</section>
 	</main>
 	<!-- Footer del sitio -->
 	<?php
-		require 'parts/footer.view.php'
+	require 'parts/footer.view.php'
 	?>
 </body>
+
 </html>

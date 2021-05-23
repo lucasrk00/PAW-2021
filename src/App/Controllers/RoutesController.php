@@ -6,6 +6,7 @@ use Paw\App\Controllers\BaseController;
 use Paw\Core\Request;
 use Exception;
 use Paw\App\Models\Especialidad;
+use Paw\App\Models\Noticia;
 use Paw\Core\Controllers\PaginationController;
 use Paw\App\Models\Profesional;
 
@@ -39,8 +40,7 @@ class RoutesController extends BaseController {
 		require $this->viewPath . '/institucion.view.php';
 	}
 	public function listaDeTurnos(Request $request) {
-		$titulo = "Lista de Turnos";
-		require $this->viewPath . '/listaDeTurnos.view.php';
+		
 	}
 	public function noticias(Request $request) {
 		$titulo = "Noticias";
@@ -48,5 +48,15 @@ class RoutesController extends BaseController {
 		$page = $request->getQueryField('page') ?? 1;
 		$pagination = PaginationController::generatePagination(40, 5, $page);
 		require $this->viewPath . '/noticias.view.php';
+	}
+	public function noticia(Request $request) {
+		$noticiaId = $request->getQueryField('noticia') ?? 1;
+		$noticia = Noticia::getByPk($noticiaId);
+		$titulo = $noticia->nombre;
+		require $this->viewPath . '/noticia.view.php';
+	}
+	public function obrasSociales(Request $request) {
+		$titulo = "Obras Sociales";
+		require $this->viewPath . '/obrasSociales.view.php';
 	}
 }

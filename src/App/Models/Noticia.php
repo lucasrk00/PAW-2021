@@ -12,6 +12,7 @@ class Noticia extends Model
 		'nombre' => null,
 		'texto' => null,
 		'imagenUrl' => null,
+		'createdAt' => null,
 	];
 
 	public function setNombre(string $nombre)
@@ -30,6 +31,11 @@ class Noticia extends Model
 	public function setImagenUrl(string $imagenUrl)
 	{
 		$this->fields['imagenUrl'] = $imagenUrl;
+		return $this;
+	}
+	public function setCreatedAt($createdAt)
+	{
+		$this->fields['createdAt'] = $createdAt;
 		return $this;
 	}
 }
