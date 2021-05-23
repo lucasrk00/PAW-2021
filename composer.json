@@ -15,7 +15,9 @@
     ],
     "require": {
         "php": "~7.4",
-        "filp/whoops": "^2.12"
+        "filp/whoops": "^2.12",
+        "vlucas/phpdotenv": "^5.3",
+        "robmorgan/phinx": "^0.12.7"
     },
     "autoload": {
         "psr-4": {

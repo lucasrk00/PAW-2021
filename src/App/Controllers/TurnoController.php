@@ -10,14 +10,19 @@ use Paw\App\Controllers\BaseController;
 use Paw\Core\Exceptions\EmptyRequiredField;
 use Paw\Core\Exceptions\WrongFieldType;
 
+use Paw\App\Models\Especialidad;
+use Paw\App\Models\Profesional;
+use Paw\App\Models\ProfesionalEspecialidades;
+use Paw\App\Models\Turno;
+
 define("FORM_FIELDS", [
 	"especialidad" => [
 		"type" => "string",
-		"required" => true
+		"required" => true,
 	],
 	"profesional" => [
 		"type" => "string",
-		"required" => false
+		"required" => true,
 	],
 	"fecha" => [
 		"type" => "date",
@@ -29,15 +34,19 @@ define("FORM_FIELDS", [
 	],
 	"nombreape" => [
 		"type" => "string",
-		"required" => true
+		"required" => true,
+		"requireError" => 'Debe llenar el campo "Correo Electrónico"',
 	],
 	"email" => [
 		"type" => "email",
-		"required" => true
+		"required" => true,
+		"requireError" => 'Debe llenar el campo "Correo Electrónico"',
+		"typeError" => "El correo electrónico ingresado es inválido"
 	],
 	"phone" => [
 		"type" => "phone",
-		"required" => true
+		"required" => true,
+		"typeError" => "El número de teléfono ingresado es inválido"
 	],
 	"nacimiento" => [
 		"type" => "date",
@@ -58,10 +67,16 @@ class TurnoController extends BaseController{
 			"Dr. Gregory House"
 		];
 	}
+	public function authMiddleware(Request $request) {
+		if (!$request->isLoggedIn()) {
+			$request->redirect('/login');
+		}
+	}
 	public function solicitarTurnoView(Request $request, $errorMessage = null) {
+		$this->authMiddleware($request);
 		$titulo = "Solicitar Turno";
-		$especialidades = $this -> getEspecialidades();
-		$profesionales = $this -> getProfesionales();
+		$especialidades = Especialidad::getAll();
+		$profesionales = Profesional::getAll();
 
 		$especialidad = $request->getQueryField('especialidad');
 		$profesional = $request->getQueryField('profesional');
@@ -80,22 +95,77 @@ class TurnoController extends BaseController{
 		$datosTurno = $request->data();
 		$file = $request->file('estudioClinico');
 		$errorMessage = null;
-
+		$hasFile = false;
 		try {
 			FormController::validateFields($datosTurno, FORM_FIELDS);
 	
 			if (isset($file) && $file["size"] > 0) {
 				FormController::validateFile($file, 'image');
+				$hasFile = true;
 			}
 		} catch (EmptyRequiredField $e) {
 			$errorMessage = $e->getMessage();
+			$this->solicitarTurnoView($request, $errorMessage);
 		} catch (WrongFieldType $e) {
 			$errorMessage = $e->getMessage();
+			$this->solicitarTurnoView($request, $errorMessage);
 		}
-		$this->solicitarTurnoView($request, $errorMessage);
+
+		$turno = new Turno;
+		$usuario = $request->getAuthUser();
+		$turno->setPersonaId($usuario->persona->id);
+		$turno->setFechaHora(date('Y-m-d H:i:s', strtotime($datosTurno['fecha'] . " " . $datosTurno['hora'])));
+		try {
+			$profesionalEspecialidad = ProfesionalEspecialidades::getByCombination($datosTurno['profesional'], $datosTurno['especialidad']);
+		} catch (Exception $e) {
+			return $this->solicitarTurnoView($request, "La especialidad seleccionada no corresponde al profesional seleccionado");
+		}
+		$turno->setProfesionalEspecialidadesId($profesionalEspecialidad->id);
+		if ($hasFile) {
+			$fileDirectory = $this->uploadImage($file);
+			$turno->setEstudioClinico($fileDirectory);
+		}
+
+		$turno->save();
+
+		$request->redirect('/confirmarTurno?turno='. $turno->id);
+	}
+
+	private function uploadImage($file, $filename = null) {
+		if (!isset($filename))
+			$filename = uniqid();
+		$tmp_name = $file['tmp_name'];
+		$path = pathinfo($file['name']);
+		$extension = $path['extension'];
+		$dest = __DIR__. "/../../../uploads/".$filename.".".$extension;
+		move_uploaded_file($tmp_name, $dest);
+		return $dest;
+	}
+
+	public function preConfirmarTurno(Request $request):Turno {
+		$turnoId = $request->getQueryField('turno');
+		if (isset($turno)) {
+			$request->redirect('/solicitarTurno');
+		}
+
+		try {
+			$turno = Turno::getByPk($turnoId);
+		} catch (Exception $e) {
+			$request->redirect('/solicitarTurno');
+		}
+		return $turno;
+	}
+	public function confirmarTurnoView(Request $request) {
+		$turno = $this->preConfirmarTurno($request);
+		require $this->viewPath . '/confirmarTurno.view.php';
+	}
+	public function confirmarTurno(Request $request) {
+		$this->authMiddleware($request);
+		$turno = $this->preConfirmarTurno($request);
+		
+		$turno->setConfirmado(true);
+		$turno->save();
+
+		echo "Turno confirmado :D";
 	}
 }
-
-/*array(8) { ["especialidad"]=> string(8) "dentista" ["profesional"]=> string(13) "idProfesional" 
-	["fecha"]=> string(10) "2021-04-30" ["hora"]=> string(5) "19:53" ["nombreape"]=> string(2) "ww" 
-	["email"]=> string(13) "lucas@asd.com" ["phone"]=> string(3) "123" ["nacimiento"]=> string(10) "2021-05-04" }*/

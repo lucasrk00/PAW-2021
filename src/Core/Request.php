@@ -3,6 +3,7 @@
 namespace Paw\Core;
 
 use Paw\Core\Controllers\FormController;
+use Paw\App\Models\Usuario;
 class Request {
 	public function uri() {
 		return parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
@@ -10,6 +11,28 @@ class Request {
 
 	public function method() {
 		return $_SERVER["REQUEST_METHOD"];
+	}
+
+	public function isLoggedIn() {
+		return session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['logged']) && $_SESSION['logged'];
+	}
+	public function getAuthUser():Usuario {
+		if ($this->isLoggedIn() && !empty($_SESSION['usuarioId']) && isset($_SESSION['usuarioId'])) {
+			return Usuario::getByPk($_SESSION['usuarioId']);
+		}
+		return null;
+	}
+
+	public function redirect($location) {
+		header("Location: {$location}", TRUE, 301);
+		exit();
+	}
+
+	public function clearSession() {
+		if ($this->isLoggedIn()) {
+			$_SESSION = array();
+			session_destroy();
+		}
 	}
 
 	public function route() {
@@ -28,6 +51,7 @@ class Request {
 		}
 		return $queries;
 	}
+
 	public function getQueryField($field) {
 		$query = $this ->  query();
 		if (array_key_exists($field, $query)) {

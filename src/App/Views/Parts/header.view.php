@@ -18,11 +18,14 @@
 			<li><a href="/noticias">Noticias</a></li>
 			<li><a href="/profesionales">Profesionales</a></li>
 			<li><a href="/obrasSociales">Obras Sociales</a></li>
-			<!-- <li><a href="./login.html">Iniciar Sesión</a></li> -->
-			<!-- <li><a href="./registrarse.html">Registrarse</a></li> -->
-			<!-- En Caso de que esté logueado el usuario verá "Mis turnos" en lugar de "Iniciar Sesión" -->
+			<?php if ($request->isLoggedIn()): ?>
 			<li><a href="/listaDeTurnos">Mis Turnos</a></li>
 			<li><a href="/solicitarTurno">Sacar Turno</a></li>
+			<?php else: ?>
+			<li><a href="/login">Iniciar Sesión</a></li>
+			<li><a href="/registrarse">Registrarse</a></li>
+			<?php endif; ?>
+			<!-- En Caso de que esté logueado el usuario verá "Mis turnos" en lugar de "Iniciar Sesión" -->
 		</ul>
 	</nav>
 </header>

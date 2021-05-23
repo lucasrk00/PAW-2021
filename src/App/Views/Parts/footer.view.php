@@ -6,4 +6,7 @@
 		<p><a href="tel:123456789">12345679</a></p>
 		<p>Cochabamba 791, Buenos Aires</p>
 	</address>
+	<?php if($request->isLoggedIn()): ?>
+	<a href="/logout">Logout</a>
+	<?php endif; ?>
 </footer>

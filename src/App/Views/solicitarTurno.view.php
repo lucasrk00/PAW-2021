@@ -27,21 +27,21 @@
 					<label for="especialidad">Especialidad* :</label>
 					<select name="especialidad" id="especialidad" required>
 						<option value="">Seleccione una especialidad</option>
-						<?php foreach ($especialidades as $key => $label) : ?>
-							<option <?php if (isset($especialidad) && $key == $especialidad) {
+						<?php foreach ($especialidades as $el) : ?>
+							<option <?php if (isset($especialidad) && $el->id == $especialidad) {
 										echo "selected";
-									} ?> value="<?= $key ?>"><?= $label ?></option>
+									} ?> value="<?= $el->id ?>"><?= $el->nombre ?></option>
 						<?php endforeach; ?>
 					</select>
 
 					<!-- Lista de profesionales disponibles para la especialidad -->
-					<label for="profesional">Profesional :</label>
-					<select name="profesional" id="profesional">
+					<label for="profesional">Profesional* :</label>
+					<select name="profesional" id="profesional" required>
 						<option value="">Seleccione un profesional</option>
-						<?php foreach ($profesionales as $key => $label) : ?>
-							<option <?php if (isset($profesional) && $key + 1 == $profesional) {
+						<?php foreach ($profesionales as $el) : ?>
+							<option <?php if (isset($profesional) && $el->id == $profesional) {
 										echo "selected";
-									} ?> value="<?= intval($key) + 1 ?>"><?= $label ?></option>
+									} ?> value="<?= $el->id ?>"><?= $el->nombre ?></option>
 						<?php endforeach; ?>
 					</select>
 

@@ -11,8 +11,12 @@ class FormController {
 			$exists = array_key_exists($fieldName, $data);
 
 			if ($field['required'] && (!$exists || empty($data[$fieldName]))) {
-				throw new EmptyRequiredField("El campo \"" . $fieldName . "\" es obligatorio");
-			} else if (!$field['required'] && !$exists) {
+				$error = "El campo \"" . $fieldName . "\" es obligatorio";
+				if (isset($field['requiredError'])) {
+					$error = $field['requiredError'];
+				}
+				throw new EmptyRequiredField($error);
+			} elseif (!$field['required'] && !$exists) {
 				continue;
 			}
 
@@ -41,7 +45,11 @@ class FormController {
 					break;
 			}
 			if (!$isValidType) {
-				throw new WrongFieldType("El campo \"" . $fieldName . "\" debe ser de tipo \"" . $field['type'] . "\"");
+				$error = "El campo \"" . $fieldName . "\" debe ser de tipo \"" . $field['type'] . "\"";
+				if (isset($field['typeError'])) {
+					$error = $field['typeError'];
+				}
+				throw new WrongFieldType($error);
 			}
 		}
 	}

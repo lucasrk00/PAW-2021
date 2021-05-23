@@ -3,6 +3,20 @@
 use Paw\Core\Request;
 use Paw\Core\Router;
 
+use Paw\Core\Config;
+use Paw\Core\Database\ConnectionBuilder;
+
+use Dotenv\Dotenv;
+session_start();
+
+$dotenv = Dotenv::createUnsafeImmutable(__DIR__ . '/../');
+$dotenv->load();
+
+$config = new Config;
+
+$connectionBuilder = new ConnectionBuilder;
+$connection = $connectionBuilder->make($config);
+
 $request = new Request;
 $router = new Router;
 
@@ -10,15 +24,21 @@ $router = new Router;
 $router->get('/', 'RoutesController@index');
 $router->get('/institucion', 'RoutesController@institucion');
 $router->get('/listaDeTurnos', 'RoutesController@listaDeTurnos');
-$router->get('/login', 'RoutesController@login');
 $router->get('/noticias', 'RoutesController@noticias');
 $router->get('/obrasSociales', 'RoutesController@obrasSociales');
 $router->get('/profesionales', 'RoutesController@profesionales');
-$router->get('/registrarse', 'RoutesController@registrarse');
-$router->get('/solicitarTurno', 'TurnoController@solicitarTurnoView');
 
+$router->get('/solicitarTurno', 'TurnoController@solicitarTurnoView');
+$router->get('/confirmarTurno', 'TurnoController@confirmarTurnoView');
+
+$router->get('/logout', 'AuthController@logout');
+$router->get('/login', 'AuthController@loginView');
+$router->get('/registrarse', 'AuthController@registerView');
 /* POST */
+$router->post('/login', 'AuthController@login');
+$router->post('/registrarse', 'AuthController@register');
 $router->post('/solicitarTurno', 'TurnoController@solicitarTurno');
+$router->post('/confirmarTurno', 'TurnoController@confirmarTurno');
 
 /* ERROR */
 $router->error('notFound', 'ErrorsController@notFound');
