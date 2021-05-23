@@ -20,7 +20,7 @@ class Init extends AbstractSeed {
 
 		$this->table('profesionales')
 			->insert([
-				'nombre' => 'Ali Vefa',
+				'nombre' => 'Dr. Ali Vefa',
 				'estudios' => 'Universidad Austral',
 				'imagenUrl' => '/assets/images/profesional1.png'
 
@@ -31,18 +31,18 @@ class Init extends AbstractSeed {
 
 		$this->table('profesionales')
 				->insert([
-					'nombre' => 'Rivero Lucas',
+					'nombre' => 'Dr. Rivero Lucas',
 					'estudios' => 'Universidad de Buenos Aires',
-					'imagenUrl' => '/assets/images/profesional2.png'
+					'imagenUrl' => '/assets/images/profesional2.jpg'
 				])
 				->save();
 
 		$lucas = $this->getAdapter()->getConnection()->lastInsertId();
 		$this->table('profesionales')
 				->insert([
-					'nombre' => 'Gregory House',
+					'nombre' => 'Dr. Gregory House',
 					'estudios' => 'Universidad John Hopkins',
-					'imagenUrl' => '/assets/images/profesional3.png'
+					'imagenUrl' => '/assets/images/profesional3.jpg'
 				])
 				->save();
 
