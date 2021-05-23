@@ -20,6 +20,7 @@ class Turno extends Model
 		'fechaHora' => null,
 		'estudioClinico' => null,
 		'confirmado' => 0,
+		'cancelado' => 0,
 	];
 
 	public $joinedFields = [
@@ -47,6 +48,11 @@ class Turno extends Model
 	}
 	public function setConfirmado(bool $val) {
 		$this->fields['confirmado'] = $val ? 1 : 0;
+		return $this;
+	}
+	public function setCancelado(bool $val)
+	{
+		$this->fields['cancelado'] = $val ? 1 : 0;
 		return $this;
 	}
 
