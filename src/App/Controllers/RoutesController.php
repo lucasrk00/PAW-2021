@@ -18,7 +18,7 @@ class RoutesController extends BaseController {
 				"url" => "url-a-la-noticia",
 				"imageUrl" => "assets/images/image-placeholder.png",
 				"date" => "18/05/2021",
-				"description" => "un texto muy largooooooooo"
+				"description" => "Una descripción mas larga"
 			];
 			array_push($noticias, $noticia);
 		}
@@ -63,8 +63,6 @@ class RoutesController extends BaseController {
 			$whereParams = array("%{$query}%");
 		}
 		$profesionales = Profesional::getAll($where, $whereParams);
-		var_dump($profesionales);
-		exit;
 
 		$profesionales = Profesional::getAll();
 		require $this->viewPath . '/profesionales.view.php';
