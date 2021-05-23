@@ -78,8 +78,6 @@ class Init extends AbstractSeed {
 			}
 		}
 
-
-
 		$this->table('obrasSociales')
 			->insert([
 				'nombre' => 'ASUNT',
@@ -118,6 +116,16 @@ class Init extends AbstractSeed {
 				'internacional' => false,
 				'consultoriosExternos' => false
 			])
+			->save();
+
+		$noticiaTexto = "Lorem ipsum dolor sit amet consectetur adipiscing elit nostra non scelerisque facilisi tempor metus tempus tellus quam, pretium nisl vitae rutrum nunc ut mauris lectus etiam maecenas imperdiet duis turpis lobortis nec. Lectus vivamus sodales nunc laoreet senectus orci potenti porttitor tellus vestibulum, justo aptent porta facilisi aliquam egestas himenaeos dignissim sociosqu dapibus, eget nibh eros elementum primis sem torquent a quisque. Lacinia ultricies ad malesuada euismod tristique velit aenean cum viverra rhoncus convallis, tellus arcu bibendum taciti neque ante vestibulum vitae suscipit parturient est, penatibus habitasse venenatis porttitor et odio sagittis dui luctus nec. Sollicitudin mollis eros suscipit convallis pulvinar fusce erat, tortor congue fames dictumst euismod primis, elementum quisque auctor odio purus curabitur. Montes nullam iaculis mollis purus nisl orci fusce, non lobortis et penatibus ornare cum quisque, volutpat mus posuere diam augue faucibus. Facilisi dictumst fames justo risus ridiculus odio bibendum inceptos, leo magnis conubia augue est class interdum imperdiet, ut vulputate sociosqu per praesent aptent himenaeos.";
+		$noticiasData = [];
+		for ($i=0; $i < 50; $i++) { 
+			array_push($noticiasData, array("nombre" => "Noticia", "texto" => $noticiaTexto, "imagenUrl" => '/assets/images/image-placeholder.png'));
+		}
+
+		$this->table('noticias')
+			->insert($noticiasData)
 			->save();
 	}
 }
