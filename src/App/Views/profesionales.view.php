@@ -28,43 +28,32 @@
 
 			<!-- x3 información de los profesionales -->
 			<ul class="lista-profesionales">
+				<?php foreach($profesionales as $profesional): ?>
 				<li class="profesional">
 					<!-- Imagen de perfil del profesional -->
-					<img src="assets/images/profesional1.png" alt="Profesional">
+					<img src="<?=$profesional->imagenUrl ?>" alt="Profesional">
 					<!-- Nombre del profesional -->
-					<p class="profesional-nombre">Dr. Ali Vefa</p>
+					<p class="profesional-nombre"><?=$profesional->nombre?></p>
 					<!-- Especialidades -->
-					<p class="profesional-especialidad">Especialidades: Neurocirujano</p>
+					<p class="profesional-especialidad">Especialidades:
+						<?php
+						$especialidadesStr ="";
+						foreach($profesional->especialidades as $especialidad) {
+							$especialidadesStr .= $especialidad->nombre . ", ";
+						}
+						echo substr($especialidadesStr, 0, -2);
+						?>
+					</p>
 					<!-- Estudios -->
-					<p class="profesional-estudio">Estudios: Universidad Austral</p>
+					<p class="profesional-estudio">Estudios: <?=$profesional->estudios?></p>
 					<!-- Botón para solicitar turno con ese profesional -->
-					<a class="button secondary" href="/solicitarTurno?profesional=1">Solicitar Turno</a>
+					<a class="button secondary" href="/solicitarTurno?profesional=<?=$profesional->id?>">Solicitar Turno</a>
 				</li>
-				<li class="profesional">
-					<!-- Imagen de perfil del profesional -->
-					<img src="assets/images/profesional2.jpg" alt="Profesional">
-					<!-- Nombre del profesional -->
-					<p class="profesional-nombre">Dr. Rivero Lucas</p>
-					<!-- Especialidades -->
-					<p class="profesional-especialidad">Especialidades: Kinesiologo / Anestesista</p>
-					<!-- Estudios -->
-					<p class="profesional-estudio">Estudios: Universidad de Buenos Aires</p>
-					<!-- Botón para solicitar turno con ese profesional -->
-					<a class="button secondary" href="/solicitarTurno?profesional=2">Solicitar Turno</a>
-				</li>
-				<li class="profesional">
-					<!-- Imagen de perfil del profesional -->
-					<img src="assets/images/profesional3.jpg" alt="Profesional">
-					<!-- Nombre del profesional -->
-					<p class="profesional-nombre">Dr. Gregory House</p>
-					<!-- Especialidades -->
-					<p class="profesional-especialidad">Especialidades: Nefrólogo / Infectólogo / Jefe de departamento de diagnósticos</p>
-					<!-- Estudios -->
-					<p class="profesional-estudio">Estudios: Universidad John Hopkins</p>
-					<!-- Botón para solicitar turno con ese profesional -->
-					<a class="button secondary" href="/solicitarTurno?profesional=3">Solicitar Turno</a>
-				</li>
+				<?php endforeach; ?>
 			</ul>
+			<?php if(count($profesionales) <= 0): ?>
+			<p>No se han encontrado resultados</p>
+			<?php endif; ?>
 
 			<!-- Paginado -->
 			<?php require 'parts/pagination.view.php' ?>

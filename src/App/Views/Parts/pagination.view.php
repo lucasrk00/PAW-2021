@@ -1,4 +1,4 @@
-<?php if(isset($pagination)): ?>
+<?php if(isset($pagination) && $pagination["lastPage"] > 1): ?>
 <ul class="paginacion">
 	<?php if($pagination["pageStart"] > 1 ): ?>
 	<li class="<?php if ( 1 == $pagination["currentPage"]){ echo "active"; }?>">

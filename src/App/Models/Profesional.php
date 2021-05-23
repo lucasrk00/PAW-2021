@@ -10,6 +10,7 @@ class Profesional extends Model {
 	public $fields = [
 		'nombre' => null,
 		'estudios' => null,
+		'imagenUrl' => null
 	];
 	public $joinedFields = [
 		'especialidades' => null,
@@ -23,6 +24,10 @@ class Profesional extends Model {
 	}
 	public function setEstudios(string $estudios) {
 		$this->fields['estudios'] = $estudios;
+		return $this;
+	}
+	public function setImagenUrl(string $url) {
+		$this->fields['imagenUrl'] = $url;
 		return $this;
 	}
 	public function setEspecialidades($especialidades)

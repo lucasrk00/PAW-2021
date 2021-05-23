@@ -26,7 +26,7 @@ $router->get('/institucion', 'RoutesController@institucion');
 $router->get('/listaDeTurnos', 'RoutesController@listaDeTurnos');
 $router->get('/noticias', 'RoutesController@noticias');
 $router->get('/obrasSociales', 'RoutesController@obrasSociales');
-$router->get('/profesionales', 'RoutesController@profesionales');
+$router->get('/profesionales', 'ProfesionalController@profesionales');
 
 $router->get('/solicitarTurno', 'TurnoController@solicitarTurnoView');
 $router->get('/confirmarTurno', 'TurnoController@confirmarTurnoView');

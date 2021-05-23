@@ -51,20 +51,4 @@ class RoutesController extends BaseController {
 		$titulo = "Obras Sociales";
 		require $this->viewPath . '/obrasSociales.view.php';
 	}
-	public function profesionales(Request $request) {
-		$titulo = "Profesionales";
-		$page = $request->getQueryField('page') ?? 1;
-		$query = $request ->getQueryField('search');
-		$pagination = PaginationController::generatePagination(4, 5, $page);
-		$where = null;
-		$whereParams = null;
-		if (isset($query)) {
-			$where = 'lower("nombre") like lower(?)';
-			$whereParams = array("%{$query}%");
-		}
-		$profesionales = Profesional::getAll($where, $whereParams);
-
-		$profesionales = Profesional::getAll();
-		require $this->viewPath . '/profesionales.view.php';
-	}
 }
