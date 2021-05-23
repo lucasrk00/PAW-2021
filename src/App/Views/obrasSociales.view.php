@@ -18,27 +18,23 @@
 			<!-- Sidebar de filtros -->
 			<aside>
 				<h3>Filtros:</h3>
-				<form action="./obrasSociales.html" method="post">
-					<input type="text" class="search" placeholder="Buscar" />
-					<label for="idOpcion1">
-						<input type="checkbox" name="idOpcion1" id="idOpcion1" />
+				<form action="/obrasSociales" method="get">
+					<input type="text" name="nombre" value="<?=$nombreQuery?>" id="nombre" class="search" placeholder="Buscar" />
+					<label for="convenioIntegral">
+						<input type="checkbox" name="convenioIntegral" <?php if($request->getQueryField('convenioIntegral') == 'on') echo "checked" ?> id="convenioIntegral" />
 						Coberturas con convenio integral
 					</label>
-					<label for="idOpcion2">
-						<input type="checkbox" name="idOpcion2" id="idOpcion2" />
+					<label for="convenioAltaComplejidad">
+						<input type="checkbox"  <?php if($request->getQueryField('convenioAltaComplejidad') == 'on') echo "checked" ?> name="convenioAltaComplejidad" id="convenioAltaComplejidad" />
 						Coberturas con convenios de alta complejidad
 					</label>
-					<label for="idOpcion3">
-						<input type="checkbox" name="idOpcion3" id="idOpcion3" />
+					<label for="internacional">
+						<input type="checkbox" <?php if($request->getQueryField('internacional') == 'on') echo "checked" ?> name="internacional" id="internacional" />
 						Coberturas internacionales (con derivación)
 					</label>
-					<label for="idOpcion4">
-						<input type="checkbox" name="idOpcion4" id="idOpcion4" />
+					<label for="consultoriosExternos">
+						<input type="checkbox"  <?php if($request->getQueryField('consultoriosExternos') == 'on') echo "checked" ?> name="consultoriosExternos" id="consultoriosExternos" />
 						Coberturas en consultorios externos
-					</label>
-					<label for="idOpcion5">
-						<input type="checkbox" name="idOpcion5" id="idOpcion5" />
-						Fundaciones, ART y Seguros de Asistencia
 					</label>
 					<!-- .... -->
 					<fieldset>
@@ -48,12 +44,15 @@
 				</form>
 			</aside>
 			<!-- Lista de obras sociales -->
+			<?php if(count($obrasSociales) <= 0): ?>
+				<p>No se han encontrado resultados. <p>
+			<?php else: ?>
 			<ul>
-				<li>ASUNT</li>
-				<li>BOREAL</li>
-				<li>OSDE</li>
-				<li>OSPAGA</li>
+				<?php foreach ($obrasSociales as $obraSocial): ?>
+				<li><?=$obraSocial->nombre?></li>
+				<?php endforeach; ?>
 			</ul>
+			<?php endif; ?>
 		</section>
 	</main>
 	<!-- Footer del sitio -->

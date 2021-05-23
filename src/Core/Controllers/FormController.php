@@ -80,6 +80,7 @@ class FormController {
 				$isValidType = FormController::isImage($file);
 				break;
 			default:
+				throw new Exception("type {$type} not implemented");
 				// TODO: ...
 				break;
 		}

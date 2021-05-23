@@ -78,5 +78,46 @@ class Init extends AbstractSeed {
 			}
 		}
 
+
+
+		$this->table('obrasSociales')
+			->insert([
+				'nombre' => 'ASUNT',
+				'convenioIntegral' => true,
+				'convenioAltaComplejidad' => true,
+				'internacional' => true,
+				'consultoriosExternos' => true
+			])
+			->save();
+
+		$this->table('obrasSociales')
+			->insert([
+				'nombre' => 'BOREAL',
+				'convenioIntegral' => false,
+				'convenioAltaComplejidad' => true,
+				'internacional' => false,
+				'consultoriosExternos' => true
+			])
+			->save();
+
+		$this->table('obrasSociales')
+			->insert([
+				'nombre' => 'OSDE',
+				'convenioIntegral' => false,
+				'convenioAltaComplejidad' => false,
+				'internacional' => true,
+				'consultoriosExternos' => false
+			])
+			->save();
+
+		$this->table('obrasSociales')
+			->insert([
+				'nombre' => 'OSPAGA',
+				'convenioIntegral' => false,
+				'convenioAltaComplejidad' => true,
+				'internacional' => false,
+				'consultoriosExternos' => false
+			])
+			->save();
 	}
 }

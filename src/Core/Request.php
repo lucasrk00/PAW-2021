@@ -58,6 +58,10 @@ class Request {
 			return $query[$field];
 		}
 	}
+	public function hasQueryField($field) {
+		$query = $this->query();
+		return array_key_exists($field, $query);
+	}
 	public function data() {
 		$postData = array();
 		if ($this->method() == "POST") {

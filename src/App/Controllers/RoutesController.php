@@ -49,8 +49,4 @@ class RoutesController extends BaseController {
 		$pagination = PaginationController::generatePagination(40, 5, $page);
 		require $this->viewPath . '/noticias.view.php';
 	}
-	public function obrasSociales(Request $request) {
-		$titulo = "Obras Sociales";
-		require $this->viewPath . '/obrasSociales.view.php';
-	}
 }
