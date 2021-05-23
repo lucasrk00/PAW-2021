@@ -5,6 +5,7 @@ namespace Paw\App\Controllers;
 use Paw\App\Controllers\BaseController;
 use Paw\Core\Request;
 use Exception;
+use Paw\App\Models\Especialidad;
 use Paw\Core\Controllers\PaginationController;
 use Paw\App\Models\Profesional;
 
@@ -29,6 +30,7 @@ class RoutesController extends BaseController {
 	public function index(Request $request) {
 		$noticias = $this->getNoticias(3);
 		$titulo = "UNLuPAW Medical Group";
+		$especialidades = Especialidad::getAll();
 		require $this->viewPath . '/home.view.php';
 	}
 
