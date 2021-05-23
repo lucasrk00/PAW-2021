@@ -52,6 +52,7 @@ final class FirstMigration extends AbstractMigration
 			->addColumn('fechaHora', 'timestamp')
 			->addColumn('estudioClinico', 'string', ['null' => true])
 			->addColumn('confirmado', 'boolean', ['default' => false])
+			->addColumn('cancelado', 'boolean', ['default' => false])
 			->addColumn('createdAt', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
 			->create();
 
