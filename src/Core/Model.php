@@ -111,7 +111,6 @@ class Model {
 		$instances = array();
 		foreach ($result as $el) {
 			$instance = self::createInstance($el[static::$primaryKey], $el);
-			$instance->getExternals();
 			array_push($instances, $instance);
 		}
 		return $instances;
@@ -130,7 +129,6 @@ class Model {
 		if (!isset($result) || !$result) throw new Exception("Doesnt exists");
 
 		$instance = self::createInstance($pk, $result);
-		$instance->getExternals();
 		return $instance;
 	}
 
