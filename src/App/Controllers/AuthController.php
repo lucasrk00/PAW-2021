@@ -28,11 +28,14 @@ define("LOGIN_FIELDS", [
 define("REGISTER_FIELDS", [
 	"email" => [
 		"type" => "email",
-		"required" => true
+		"required" => true,
+		"requireError" => 'Debe llenar el campo "Correo Electrónico"',
+		"typeError" => "El correo electrónico ingresado es inválido"
 	],
 	"password" => [
 		"type" => "string",
-		"required" => true
+		"required" => true,
+		"requireError" => 'Debe llenar el campo "Contraseña"',
 	],
 	"repassword" => [
 		"type" => "string",
@@ -40,11 +43,13 @@ define("REGISTER_FIELDS", [
 	],
 	"nombreApellido" => [
 		"type" => "string",
-		"required" => true
+		"required" => true,
+		"requireError" => 'Debe llenar el campo "Nombre y Apellido"',
 	],
 	"telefono" => [
 		"type" => "phone",
-		"required" => true
+		"required" => true,
+		"typeError" => "El número de teléfono ingresado es inválido"
 	],
 	"fechaNacimiento" => [
 		"type" => "date",
