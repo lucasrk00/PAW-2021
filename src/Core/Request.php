@@ -4,6 +4,7 @@ namespace Paw\Core;
 
 use Paw\Core\Controllers\FormController;
 use Paw\App\Models\Usuario;
+use Exception;
 class Request {
 	private $messageStatus = [
 		'message' => '',
@@ -29,13 +30,24 @@ class Request {
 	}
 
 	public function isLoggedIn() {
-		return session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['logged']) && $_SESSION['logged'];
+		$user = $this->getAuthUser();
+		return isset($_SESSION['logged']) && isset($user) && $_SESSION['logged'];
 	}
-	public function getAuthUser():Usuario {
-		if ($this->isLoggedIn() && !empty($_SESSION['usuarioId']) && isset($_SESSION['usuarioId'])) {
-			return Usuario::getByPk($_SESSION['usuarioId']);
+
+	public function getAuthUser():?Usuario {
+		if (!empty($_SESSION['usuarioId']) && isset($_SESSION['usuarioId'])) {
+			try {
+				return Usuario::getByPk($_SESSION['usuarioId']);
+			} catch (Exception $e) {
+				$this->clearSession();
+				return null;
+			}
 		}
 		return null;
+	}
+	public function clearSession() {
+		$_SESSION = array();
+		session_destroy();
 	}
 
 	public function redirect($location) {
@@ -59,12 +71,6 @@ class Request {
 		return $this->messageStatus;
 	}
 
-	public function clearSession() {
-		if ($this->isLoggedIn()) {
-			$_SESSION = array();
-			session_destroy();
-		}
-	}
 
 	public function route() {
 		return [
