@@ -5,6 +5,21 @@ namespace Paw\Core;
 use Paw\Core\Controllers\FormController;
 use Paw\App\Models\Usuario;
 class Request {
+	private $messageStatus = [
+		'message' => '',
+		'type' => 'none'
+	];
+	public function __construct()
+	{
+		session_start();
+		if (isset($_SESSION['statusMessage']))
+			$this->messageStatus['message'] = $_SESSION['statusMessage'];
+		if (isset($_SESSION['statusType']))
+			$this->messageStatus['type'] = $_SESSION['statusType'];
+		
+		$_SESSION['statusMessage'] = null;
+		$_SESSION['statusType'] = null;
+	}
 	public function uri() {
 		return parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 	}
@@ -26,6 +41,22 @@ class Request {
 	public function redirect($location) {
 		header("Location: {$location}", TRUE, 301);
 		exit();
+	}
+	public function setStatusMessage(string $message, bool $isError = false, bool $saveInSession = false) {
+		$type = $isError ? 'error':'success';
+		if ($saveInSession) {
+			$_SESSION['statusMessage'] = $message;
+			$_SESSION['statusType'] = $type;
+		}
+
+		$this->messageStatus = [
+			'message' => $message ?? '',
+			'type' => $type ?? 'none'
+		];
+	}
+
+	public function getStatusMessage() {
+		return $this->messageStatus;
 	}
 
 	public function clearSession() {

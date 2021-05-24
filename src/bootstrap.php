@@ -7,7 +7,6 @@ use Paw\Core\Config;
 use Paw\Core\Database\ConnectionBuilder;
 
 use Dotenv\Dotenv;
-session_start();
 
 $dotenv = Dotenv::createUnsafeImmutable(__DIR__ . '/../');
 $dotenv->load();

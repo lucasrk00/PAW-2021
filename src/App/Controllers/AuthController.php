@@ -31,11 +31,11 @@ define("REGISTER_FIELDS", [
 		"required" => true
 	],
 	"password" => [
-		"type" => "password",
+		"type" => "string",
 		"required" => true
 	],
 	"repassword" => [
-		"type" => "password",
+		"type" => "string",
 		"required" => true
 	],
 	"nombreApellido" => [
@@ -54,7 +54,7 @@ define("REGISTER_FIELDS", [
 ]);
 
 class AuthController extends BaseController {
-	public function loginView(Request $request, $fields = array(), $errorMessage = null) {
+	public function loginView(Request $request, $fields = array()) {
 		if ($request->isLoggedIn()) {
 			$request->redirect("/");
 		}
@@ -62,7 +62,7 @@ class AuthController extends BaseController {
 		$titulo = "Login";
 		require $this->viewPath . '/login.view.php';
 	}
-	public function registerView(Request $request, $fields = array(), $errorMessage = null) {
+	public function registerView(Request $request, $fields = array()) {
 		if ($request->isLoggedIn()) {
 			$request->redirect("/");
 		}
@@ -90,7 +90,8 @@ class AuthController extends BaseController {
 		try {
 			$usuario = Usuario::getByMail($data['email']);
 		} catch (Exception $error) {
-			return $this->loginView($request, $insensitiveData, "Email o contraseña incorrecta");
+			$request->setStatusMessage("Email o contraseña incorrecta", true);
+			return $this->loginView($request, $insensitiveData);
 		}
 
 		if (password_verify($data['password'], $usuario->password)) {
@@ -99,18 +100,27 @@ class AuthController extends BaseController {
 			$_SESSION["nombreApellido"] = $usuario->persona->nombreApellido;
 			$_SESSION["creationDate"] = time();
 		}
-		return $this->loginView($request, $insensitiveData, "Email o contraseña incorrecta");
+
+		$request->setStatusMessage("Email o contraseña incorrecta", true);
+		return $this->loginView($request, $insensitiveData);
 	}
 	public function register(Request $request) {
 		$data = $request->data();
+		$hasError = false;
+		$errorMessage = "";
 		try {
 			FormController::validateFields($data, REGISTER_FIELDS);
 		} catch (EmptyRequiredField $e) {
 			$errorMessage = $e->getMessage();
+			$hasError = true;
 		} catch (WrongFieldType $e) {
 			$errorMessage = $e->getMessage();
+			$hasError = true;
 		}
-
+		if ($hasError) {
+			$request->setStatusMessage($errorMessage, true);
+			return $this->registerView($request);
+		}
 		$insensitiveData = [
 			"email" => $data["email"],
 			"nombreApellido" => $data["nombreApellido"],
@@ -118,8 +128,8 @@ class AuthController extends BaseController {
 			"fechaNacimiento" => $data["fechaNacimiento"]
 		];
 		if ($data['password'] !== $data['repassword']) {
-			$errorMessage = "Las contraseñas no coinciden";
-			return $this->registerView($request, $insensitiveData, $errorMessage);
+			$request->setStatusMessage("Las contraseñas no coinciden", true);
+			return $this->registerView($request, $insensitiveData);
 		}
 
 		$data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
@@ -128,7 +138,8 @@ class AuthController extends BaseController {
 		try {
 			$exists = Usuario::getByMail($data['email']);
 			if (isset($exists)) {
-				return $this->registerView($request, $insensitiveData, "Ya existe un usuario con ese email");
+				$request->setStatusMessage("Ya existe un usuario con ese email", true);
+				return $this->registerView($request, $insensitiveData);
 			}
 		} catch (Exception $error) {
 
@@ -143,7 +154,7 @@ class AuthController extends BaseController {
 		$persona->set($data);
 		$persona->save();
 
-		// TODO: Cambiar esto o hacer que se muestre que se registro...
+		$request->setStatusMessage("Registrado correctamente", false, true);
 		$request->redirect("/login");
 	}
 }

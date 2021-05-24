@@ -37,6 +37,7 @@ class RoutesController extends BaseController {
 
 	public function institucion(Request $request) {
 		$titulo = "Institucion";
+		$test = $request->getStatusMessage();
 		require $this->viewPath . '/institucion.view.php';
 	}
 	public function listaDeTurnos(Request $request) {

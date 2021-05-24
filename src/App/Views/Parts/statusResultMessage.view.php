@@ -1,10 +1,8 @@
-<?php if (isset($errorMessage)) : ?>
-	<p class="status-notification error-message">
-		<?= $errorMessage ?>
-	</p>
-<?php endif; ?>
-<?php if (isset($successMessage)) : ?>
-	<p class="status-notification success-message">
-		<?= $successMessage ?>
-	</p>
+<?php 
+$statusMessage = $request->getStatusMessage();
+if ($statusMessage['type'] !== 'none'):
+?>
+<p class="status-notification <?=$statusMessage['type']?>-message">
+	<?= $statusMessage['message'] ?>
+</p>
 <?php endif; ?>

@@ -74,7 +74,7 @@ class TurnoController extends BaseController{
 			$request->redirect('/login');
 		}
 	}
-	public function listaDeTurnosView(Request $request, $errorMessage = null, $successMessage = null) {
+	public function listaDeTurnosView(Request $request) {
 		$this->authMiddleware($request);
 		$titulo = "Lista de Turnos";
 		$query = "\"personaId\" = ? and \"confirmado\" = ?";
@@ -83,7 +83,7 @@ class TurnoController extends BaseController{
 
 		require $this->viewPath . '/listaDeTurnos.view.php';
 	}
-	public function solicitarTurnoView(Request $request, $errorMessage = null) {
+	public function solicitarTurnoView(Request $request) {
 		$this->authMiddleware($request);
 		$titulo = "Solicitar Turno";
 		$especialidades = Especialidad::getAll();
@@ -122,11 +122,11 @@ class TurnoController extends BaseController{
 				}
 			}
 		} catch (EmptyRequiredField $e) {
-			$errorMessage = $e->getMessage();
-			return $this->solicitarTurnoView($request, $errorMessage);
+			$request->setStatusMessage($e->getMessage(), true);
+			return $this->solicitarTurnoView($request);
 		} catch (WrongFieldType $e) {
-			$errorMessage = $e->getMessage();
-			return $this->solicitarTurnoView($request, $errorMessage);
+			$request->setStatusMessage($e->getMessage(), true);
+			return $this->solicitarTurnoView($request);
 		}
 
 		$turno = new Turno;
@@ -136,7 +136,8 @@ class TurnoController extends BaseController{
 		try {
 			$profesionalEspecialidad = ProfesionalEspecialidades::getByCombination($datosTurno['profesional'], $datosTurno['especialidad']);
 		} catch (Exception $e) {
-			return $this->solicitarTurnoView($request, "La especialidad seleccionada no corresponde al profesional seleccionado");
+			$request->setStatusMessage("La especialidad seleccionada no corresponde al profesional seleccionado", true);
+			return $this->solicitarTurnoView($request);
 		}
 		$turno->setProfesionalEspecialidadesId($profesionalEspecialidad->id);
 		if ($hasFile) {
@@ -188,6 +189,7 @@ class TurnoController extends BaseController{
 		$turno->setConfirmado(true);
 		$turno->save();
 
+		$request->setStatusMessage("Turno confirmado correctamente", false, true);
 		return $request->redirect('/listaDeTurnos');
 	}
 
@@ -197,6 +199,7 @@ class TurnoController extends BaseController{
 
 		$turno->setCancelado(true);
 		$turno->save();
+		$request->setStatusMessage("Turno cancelado correctamente", false, true);
 		return $request->redirect('/listaDeTurnos');
 	}
 }
