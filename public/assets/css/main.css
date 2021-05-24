@@ -47,9 +47,10 @@ header {
 	display: grid;
 	grid-template-areas:
 		"title addresses"
+		"none logout"
 		"navbar navbar";
 	/* grid-template-rows: 9.375rem 4.688rem; */
-	grid-template-rows: 7rem 3rem;
+	grid-template-rows: 7rem auto 3rem;
 	grid-template-columns: 1fr auto;
 	/*padding: 0 1.5rem;*/
 	place-items: center stretch;
@@ -58,6 +59,13 @@ header {
 header h1 {
 	grid-area: title;
 	margin-left: var(--header-padding);
+}
+header a.logout {
+	grid-area: logout;
+	display: flex;
+	padding-right: 1.5rem;
+	margin-left: auto;
+	margin-bottom: 0.5rem;
 }
 header nav {
 	grid-area: navbar;
@@ -157,7 +165,9 @@ header .menu-btn:checked~.menu-icon .navicon:after {
 		font-size: 1.5rem;
 		margin: 0;
 		padding: 1rem;
-
+	}
+	header a.logout {
+		display: none;
 	}
 
 	header address {

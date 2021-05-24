@@ -9,8 +9,8 @@
 		<p><a href="tel:123456789">12345679</a></p>
 		<p>Cochabamba 791, Buenos Aires</p>
 	</address>
-	<?php if ($request->isLoggedIn()): ?>
-		<p>Hola, <?= $_SESSION['nombreApellido'] ?> <a href="/logout">Logout</a></p>
+	<?php if ($request->isLoggedIn()) : ?>
+		<a class="logout" href=" /logout">Logout</a></p>
 	<?php endif; ?>
 	<!-- Menú -->
 	<nav>

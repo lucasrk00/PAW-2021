@@ -15,7 +15,7 @@
 	?>
 	<main>
 		<section>
-			<h2>Turnos de Nombre</h2>
+			<h2>Turnos de <?= $_SESSION["nombreApellido"] ?></h2>
 			<p>Mostrando turnos filtrados por:</p>
 			<!-- Lista de filtros -->
 			<ul>
@@ -24,6 +24,9 @@
 
 			<!-- Botón que muestra los filtros -->
 			<button>Filtros</button>
+			<?php
+			require 'parts/statusResultMessage.view.php'
+			?>
 			<table>
 				<tr>
 					<th>Fecha</th>
@@ -43,7 +46,7 @@
 						<?php if ($turno->cancelado) : ?>
 							<td>Cancelado</td>
 						<?php else : ?>
-							<td><?= ($turno->fechaHora<date("Y-m-d H:m")) ? "Finalizado" : "Pendiente" ?></td>
+							<td><?= ($turno->fechaHora < date("Y-m-d H:m")) ? "Finalizado" : "Pendiente" ?></td>
 						<?php endif; ?>
 						<td>
 							<?php if ($turno->cancelado || $turno->fechaHora < date("Y-m-d H:m")) : ?>

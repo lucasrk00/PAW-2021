@@ -54,25 +54,21 @@
 					<input type="time" name="hora" id="hora" value="<?= $hora ?>" required />
 				</fieldset>
 
-				<fieldset>
-					<legend>Datos del Paciente: </legend> <!-- Se ve mal en chrome, si cambio el legend por el p-->
+				<!--<fieldset>
+					<legend>Datos del Paciente: </legend> 
 
-					<!-- Nombre y apellido del paciente -->
 					<label for="nombreape">Nombre y Apellido* :</label>
 					<input type="text" name="nombreape" id="nombreape" required placeholder="ej. Juan Pérez" />
 
-					<!-- Correo electrónico del paciente -->
 					<label for="email">Correo Electrónico* :</label>
 					<input type="email" name="email" id="email" required placeholder="ej. juan@ejemplo.com" />
 
-					<!-- Teléfono celular del paciente -->
 					<label for="phone">Teléfono Celular* :</label>
 					<input type="tel" name="phone" id="phone" required placeholder="ej. 111111111" />
 
-					<!-- Fecha de nacimiento del paciente -->
 					<label for="nacimiento">Fecha de Nacimiento* :</label>
 					<input type="date" name="nacimiento" id="nacimiento" required max="<?= date("Y-m-d") ?>" />
-				</fieldset>
+				</fieldset>-->
 				<fieldset>
 					<input type="file" value="Adjuntar archivo" name="estudioClinico" id="estudioClinico" accept=".png, .jpg, .jpeg" />
 				</fieldset>

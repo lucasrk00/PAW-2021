@@ -5,7 +5,7 @@
 	<?php
 	require 'parts/head.view.php'
 	?>
-	<link rel="stylesheet" type="text/css" href="/assets/css/solicitarTurno.css" />
+	<link rel="stylesheet" type="text/css" href="/assets/css/confirmarTurno.css" />
 </head>
 
 <body>
@@ -17,13 +17,12 @@
 	<main>
 		<section>
 			<h2>Confirmar Turno</h2>
-			<p>id <?= $turno->id ?></p>
 			<p>Especialidad <?= $turno->especialidad->nombre ?></p>
 			<p>Profesional <?= $turno->profesional->nombre ?></p>
 			<p>Fecha <?= $turno->fechaHora ?></p>
 
 			<form action="/confirmarTurno?turno=<?=$turno->id?>" method="post">
-				<button>Confirmar</button>
+				<button class="secondary">Confirmar</button>
 			</form>
 		</section>
 	</main>

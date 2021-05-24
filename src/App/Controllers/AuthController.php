@@ -48,6 +48,7 @@ define("REGISTER_FIELDS", [
 	],
 	"fechaNacimiento" => [
 		"type" => "date",
+		"max" => date("Y-m-d"),
 		"required" => true
 	],
 ]);

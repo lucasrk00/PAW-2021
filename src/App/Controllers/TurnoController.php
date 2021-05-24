@@ -33,7 +33,7 @@ define("FORM_FIELDS", [
 		"type" => "string",
 		"required" => true
 	],
-	"nombreape" => [
+	/*"nombreape" => [
 		"type" => "string",
 		"required" => true,
 		"requireError" => 'Debe llenar el campo "Correo Electrónico"',
@@ -53,7 +53,7 @@ define("FORM_FIELDS", [
 		"type" => "date",
 		"max" => date("Y-m-d"),
 		"required" => true
-	]
+	]*/
 ]);
 class TurnoController extends BaseController{
 	public static function getEspecialidades() {
@@ -74,7 +74,7 @@ class TurnoController extends BaseController{
 			$request->redirect('/login');
 		}
 	}
-	public function listaDeTurnosView(Request $request, $errorMessage = null ) {
+	public function listaDeTurnosView(Request $request, $errorMessage = null, $successMessage = null) {
 		$this->authMiddleware($request);
 		$titulo = "Lista de Turnos";
 		$query = "\"personaId\" = ? and \"confirmado\" = ?";
@@ -112,11 +112,13 @@ class TurnoController extends BaseController{
 			FormController::validateFields($datosTurno, FORM_FIELDS);
 
 			if (isset($file)) {
-				if ($file['error']) {
-					throw new WrongFieldType("El archivo debe ser de tipo imagen");
-				} else if ($file["size"] > 0) {
-					FormController::validateFile($file, 'image');
-					$hasFile = true;
+				if ($file["error"] != 4) {
+					if ($file["size"] > 0) {
+						FormController::validateFile($file, 'image');
+						$hasFile = true;
+					} else if ($file["error"]) {
+						throw new WrongFieldType("El archivo debe ser de tipo imagen");
+					}
 				}
 			}
 		} catch (EmptyRequiredField $e) {
@@ -158,7 +160,7 @@ class TurnoController extends BaseController{
 		return $dest;
 	}
 
-	public function validarTurno(Request $request):Turno {
+	public function turnoMiddleware(Request $request):Turno {
 		$turnoId = $request->getQueryField('turno');
 		if (isset($turno)) {
 			$request->redirect('/solicitarTurno');
@@ -176,25 +178,25 @@ class TurnoController extends BaseController{
 		return $turno;
 	}
 	public function confirmarTurnoView(Request $request) {
-		$turno = $this->validarTurno($request);
+		$turno = $this->turnoMiddleware($request);
 		require $this->viewPath . '/confirmarTurno.view.php';
 	}
 	public function confirmarTurno(Request $request) {
 		$this->authMiddleware($request);
-		$turno = $this->validarTurno($request);
-		
+		$turno = $this->turnoMiddleware($request);
+
 		$turno->setConfirmado(true);
 		$turno->save();
 
-		echo "Turno confirmado :D";
+		return $request->redirect('/listaDeTurnos');
 	}
 
 	public function cancelarTurno(Request $request) {
 		$this->authMiddleware($request);
-		$turno = $this->validarTurno($request);
+		$turno = $this->turnoMiddleware($request);
 
 		$turno->setCancelado(true);
 		$turno->save();
-		return $this->listaDeTurnosView($request);
+		return $request->redirect('/listaDeTurnos');
 	}
 }
