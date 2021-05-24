@@ -10,7 +10,7 @@
 		<p>Cochabamba 791, Buenos Aires</p>
 	</address>
 	<?php if ($request->isLoggedIn()) : ?>
-		<a class="logout" href=" /logout">Logout</a></p>
+		<!-- <a class="logout" href=" /logout">Logout</a></p> -->
 	<?php endif; ?>
 	<!-- Menú -->
 	<nav>
