@@ -21,15 +21,15 @@
 			?>
 			<article class="novedad">
 				<!-- Imágen del artículo -->
-				<img src="<?= $noticia["imageUrl"] ?>" alt="<?= $noticia['title'] ?>"/>
+				<img src="<?= $noticia->imagenUrl ?>" alt="<?= $noticia->nombre?>"/>
 				<!-- Título del artículo -->
-				<h3><?= $noticia['title'] ?></h3> 
+				<h3><?= $noticia->nombre ?></h3> 
 				<!-- Fecha del artículo --> 
-				<p class="fecha"><?= $noticia['date'] ?></p>
+				<p class="fecha"><?= $noticia->createdAt ?></p>
 				<!--Contenido de la novedad-->
-				<p><?= $noticia['description'] ?></p>
+				<p><?= substr($noticia->texto,0, 50) ?>...</p>
 				<!-- Botón "Ver Mas" del artículo -->
-				<a class="button" href="<?= $noticia['url']?>">Ver Más</a>
+				<a class="button" href="/noticia?id=<?= $noticia->id ?>">Ver Más</a>
 			</article>
 			<?php endforeach ; ?>
 			<!-- Paginado -->

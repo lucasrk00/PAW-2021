@@ -9,6 +9,7 @@ use Paw\App\Models\Especialidad;
 use Paw\App\Models\Noticia;
 use Paw\Core\Controllers\PaginationController;
 use Paw\App\Models\Profesional;
+use Paw\Core\Exceptions\NotFound;
 
 class RoutesController extends BaseController {
 
@@ -40,19 +41,20 @@ class RoutesController extends BaseController {
 		$test = $request->getStatusMessage();
 		require $this->viewPath . '/institucion.view.php';
 	}
-	public function listaDeTurnos(Request $request) {
-		
-	}
 	public function noticias(Request $request) {
 		$titulo = "Noticias";
-		$noticias = $this->getNoticias(40);
 		$page = $request->getQueryField('page') ?? 1;
 		$pagination = PaginationController::generatePagination(40, 5, $page);
+		$noticias = Noticia::getAll();
 		require $this->viewPath . '/noticias.view.php';
 	}
 	public function noticia(Request $request) {
-		$noticiaId = $request->getQueryField('noticia') ?? 1;
-		$noticia = Noticia::getByPk($noticiaId);
+		$noticiaId = $request->getQueryField('id') ?? 1;
+		try {
+			$noticia = Noticia::getByPk($noticiaId);
+		} catch (Exception $e) {
+			throw new NotFound();
+		}
 		$titulo = $noticia->nombre;
 		require $this->viewPath . '/noticia.view.php';
 	}
