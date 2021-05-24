@@ -67,9 +67,12 @@
 					<input type="tel" name="phone" id="phone" required placeholder="ej. 111111111" />
 
 					<label for="nacimiento">Fecha de Nacimiento* :</label>
-					<input type="date" name="nacimiento" id="nacimiento" required max="<?= date("Y-m-d") ?>" />
+					<input type="date" name="nacimiento" id="nacimiento" required max="" />
 				</fieldset>-->
 				<fieldset>
+					<label class="button secondary" for="estudioClinico">
+						Subir archivo
+					</label>
 					<input type="file" value="Adjuntar archivo" name="estudioClinico" id="estudioClinico" accept=".png, .jpg, .jpeg" />
 				</fieldset>
 				<fieldset>

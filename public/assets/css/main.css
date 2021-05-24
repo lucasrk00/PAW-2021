@@ -250,9 +250,12 @@ a, button.link, input[type="submit"].link {
 a:hover, button.link:hover, input[type="submit"].link:hover {
 	text-decoration: underline;
 }
+input[type="file"] {
+	display: none;
+}
 
 /* BUTTONS */
-button, input[type="submit"], a.button {
+button, input[type="submit"], a.button, label.button {
 	background-color: white;
 	border-radius: 5px;
 	border: 1px solid rgba(0,0,0, .3);
@@ -268,7 +271,7 @@ button[disabled], button:disabled, input[type="submit"][disabled], a.button.disa
 	background-color: #A6A6A6;
 	cursor: default;
 }
-button.secondary, input[type="submit"].secondary, a.button.secondary {
+button.secondary, input[type="submit"].secondary, a.button.secondary, label.button.secondary{
 	color: white;
 	background-color: var(--primary);
 }
