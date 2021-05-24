@@ -33,6 +33,8 @@ class RoutesController extends BaseController {
 		$noticias = $this->getNoticias(3);
 		$titulo = "UNLuPAW Medical Group";
 		$especialidades = Especialidad::getAll();
+		$noticias = Noticia::getAll();
+		$noticias = array_slice($noticias, 0, 3);
 		require $this->viewPath . '/home.view.php';
 	}
 
