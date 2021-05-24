@@ -57,7 +57,7 @@ class Router {
 			http_response_code(404);
 			$this->callError('notFound', $request);
 		} catch (Exception $e) {
-			throw $e; // TODO: Cambiar esto
+			http_response_code(500);
 			$this->callError('internal', $request);
 		}
 	}
