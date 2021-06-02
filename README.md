@@ -17,7 +17,7 @@ Además es necesario tener instalado:
 ### Instalar dependencias
 Es necesario instalar las dependencias correspondientes al proyecto corriendo el siguiente comando
 ```sh
-composer update
+composer install
 ```
 
 ### Configurar las variables de entorno
