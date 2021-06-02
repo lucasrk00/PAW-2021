@@ -41,16 +41,16 @@
 						<!-- Primer Turno -->
 						<tr>
 							<td><?= date('Y-m-d', strtotime($turno->fechaHora)) ?></td>
-							<td><?= date('H:m', strtotime($turno->fechaHora)) ?></td>
+							<td><?= date('H:i', strtotime($turno->fechaHora)) ?></td>
 							<td><?= $turno->profesional->nombre ?></td>
 							<td><?= $turno->especialidad->nombre ?></td>
 							<?php if ($turno->cancelado) : ?>
 								<td>Cancelado</td>
 							<?php else : ?>
-								<td><?= ($turno->fechaHora < date("Y-m-d H:m")) ? "Finalizado" : "Pendiente" ?></td>
+								<td><?= ($turno->fechaHora < date("Y-m-d H:i")) ? "Finalizado" : "Pendiente" ?></td>
 							<?php endif; ?>
 							<td>
-								<?php if ($turno->cancelado || $turno->fechaHora < date("Y-m-d H:m")) : ?>
+								<?php if ($turno->cancelado || $turno->fechaHora < date("Y-m-d H:i")) : ?>
 									<button disabled>Cancelar</button>
 								<?php else : ?>
 									<form action="/cancelarTurno?turno=<?= $turno->id ?>" method="post">
