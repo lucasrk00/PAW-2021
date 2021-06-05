@@ -69,11 +69,15 @@
 					<label for="nacimiento">Fecha de Nacimiento* :</label>
 					<input type="date" name="nacimiento" id="nacimiento" required max="" />
 				</fieldset>-->
-				<fieldset>
-					<label class="button secondary" for="estudioClinico">
-						Subir archivo
-					</label>
-					<input type="file" value="Adjuntar archivo" name="estudioClinico" id="estudioClinico" accept=".png, .jpg, .jpeg" />
+				<fieldset class="file-upload">
+					<!--<div class="file-upload">-->
+						<p>Arrastre el archivo que desee subir</p>
+						<p>o haga click en</p>
+						<label class="button secondary" for="estudioClinico">
+							Subir archivo
+						</label>
+						<input type="file" value="Adjuntar archivo" name="estudioClinico" id="estudioClinico" accept=".png, .jpg, .jpeg" />
+					<!--</div>-->
 				</fieldset>
 				<fieldset>
 					<!-- Boton que limpia los campos del formulario -->

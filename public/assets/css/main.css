@@ -92,9 +92,6 @@ header nav ul li a {
 	text-decoration: none;
 }
 /* Hamburguer Menu */
-header .menu-btn {
-	display: none;
-}
 header .menu-icon {
 	cursor: pointer;
 	display: none;
@@ -102,6 +99,9 @@ header .menu-icon {
 	position: relative;
 	user-select: none;
 	z-index: 10;
+	border: none;
+	background-color: transparent;
+	box-shadow: none;
 }
 header .menu-icon .navicon,
 header .menu-icon .navicon:before,
@@ -135,20 +135,20 @@ header .menu-icon .navicon:before {
 header .menu-icon .navicon:after {
 	top: -1.4em;
 }
-header .menu-btn:checked~.menu-icon .navicon {
+header .menu-icon.active .navicon {
 	background: transparent;
 }
 
-header .menu-btn:checked~.menu-icon .navicon:before {
+header .menu-icon.active .navicon:before {
 	transform: rotate(-45deg);
 }
 
-header .menu-btn:checked~.menu-icon .navicon:after {
+header .menu-icon.active .navicon:after {
 	transform: rotate(45deg);
 }
 
-header .menu-btn:checked~.menu-icon .navicon:before,
-header .menu-btn:checked~.menu-icon .navicon:after {
+header .menu-icon.active .navicon:before,
+header .menu-icon.active .navicon:after {
 	top: 0;
 }
 
@@ -188,9 +188,11 @@ header .menu-btn:checked~.menu-icon .navicon:after {
 		height: 100%;
 		overflow-y: auto;
 	}
-	header nav.active, header .menu-btn:checked~nav {
+	header nav.active {
 		display: block;
 	}
+	/*header nav.closed {
+	}*/
 	header nav h2{
 		display: block;
 		font-size: 1.5rem;

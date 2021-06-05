@@ -1,7 +1,6 @@
 main section form {
-	display: flex;
+	display: grid;
 	gap: 1rem;
-	flex-wrap: wrap;
 	justify-content: center;
 }
 main section form fieldset {
@@ -31,6 +30,24 @@ button, input[type="submit"] {
 }
 
 main section form fieldset button {
+	background-color: var(--secondary);
+}
+
+main section form fieldset.file-upload {
+	width: 13rem;
+	height: 7rem;
+	border-radius: 5px;
+	border: 1px solid var(--alternative);
+	background-color: var(--light-dark);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	margin:auto;
+}
+
+main section form fieldset.file-upload.over {
 	background-color: var(--secondary);
 }
 

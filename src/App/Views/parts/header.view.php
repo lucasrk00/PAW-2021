@@ -1,9 +1,8 @@
 <header>
 	<!-- Título  -->
 	<h1 class="logo"><span>UNLuPAW</span> Medical Group</h1>
-	<!-- Hamburguer menú -->
-	<input class="menu-btn" type="checkbox" id="menu-btn" />
-	<label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+	<!-- Hamburger menú -->
+	<button class="menu-icon"><span class="navicon"></span></button>
 	<!-- Info del sitio -->
 	<address class="info">
 		<p><a href="tel:123456789">12345679</a></p>
