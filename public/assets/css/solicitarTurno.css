@@ -31,7 +31,7 @@ main section form fieldset:last-child {
 main section form fieldset:nth-last-child(2) {
 	grid-template-columns: 1fr;
 }
-button, input[type="submit"] {
+main button, main input[type="submit"] {
 	width: 10rem;
 }
 
