@@ -33,6 +33,9 @@ $router->get('/noticia', 'RoutesController@noticia');
 $router->get('/solicitarTurno', 'TurnoController@solicitarTurnoView');
 $router->get('/confirmarTurno', 'TurnoController@confirmarTurnoView');
 $router->get('/listaDeTurnos', 'TurnoController@listaDeTurnosView');
+$router->get('/turnero', 'TurnoController@turneroView');
+$router->get('/turneroProfesional', 'TurnoController@turneroProfesionalView');
+$router->get('/turneroCliente', 'TurnoController@turneroClienteView');
 
 $router->get('/logout', 'AuthController@logout');
 $router->get('/login', 'AuthController@loginView');

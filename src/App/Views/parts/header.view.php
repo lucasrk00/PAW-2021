@@ -2,7 +2,7 @@
 	<!-- Título  -->
 	<h1 class="logo"><span>UNLuPAW</span> Medical Group</h1>
 	<!-- Hamburger menú -->
-	<button class="menu-icon"><span class="navicon"></span></button>
+	<!-- <button class="menu-icon"><span class="navicon"></span></button> -->
 	<!-- Info del sitio -->
 	<address class="info">
 		<p><a href="tel:123456789">12345679</a></p>

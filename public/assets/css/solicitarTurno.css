@@ -34,21 +34,25 @@ main section form fieldset button {
 }
 
 main section form fieldset.file-upload {
-	width: 13rem;
-	height: 7rem;
 	border-radius: 5px;
-	border: 1px solid var(--alternative);
-	background-color: var(--light-dark);
+	border: 2px dashed transparent;
+	/* border: 1px solid var(--alternative);
+	background-color: var(--light-dark); */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	gap: 0.5rem;
+	padding: 1rem;
+	box-sizing: content-box;
 	margin:auto;
 }
-
+main section form fieldset.file-upload label {
+	margin-top: .5rem;
+	padding: .5rem 1rem;
+}
 main section form fieldset.file-upload.over {
-	background-color: var(--secondary);
+	border-color:rgba(0,0,0,0.3);
 }
 
 @media screen and (max-width: 650px) {

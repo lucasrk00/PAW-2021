@@ -301,6 +301,73 @@ input:not(input[type="submit"], input[type="text"].search, input[type="checkbox"
 	box-sizing: border-box;
 }
 
+.calendar {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: .5rem 0;
+	border: 1px solid rgba(0,0,0,0.3);
+	padding: 1rem;
+	border-radius: 5px;
+	background-color: rgb(232 232 232);
+}
+.calendar p.title {
+	grid-column: 1/-1;
+	font-weight: bold;
+	font-size: 1.5rem;
+	margin-bottom: .5rem;
+}
+.calendar p.unselected-professional {
+	grid-column: 1/-1;
+	display: block;
+	text-align: center;
+}
+.calendar:not(.unselected-professional) p.unselected-professional {
+	display: none;
+}
+.calendar.unselected-professional *:not(.unselected-professional, .title){
+	display: none;
+}
+.calendar p:not(.unselected-professional, .title) {
+	font-weight: bold;
+}
+.calendar .dates-container {
+	border-right: 1px solid rgba(0, 0, 0, .1);
+	background-color: white;
+}
+.calendar .hours-container {
+}
+.calendar .dates-container, .calendar .hours-container {
+	display: flex;
+	border-top: 1px solid rgba(0, 0, 0, .1);
+	flex-flow: column;
+	/* gap: .5rem 0; */
+	padding: .3rem; 
+	overflow-y: auto;
+	max-height: 230px;
+}
+.calendar .dates-container button, .calendar .hours-container button {
+	border: none;
+	background-color: transparent;
+	border-radius: 0;
+	box-shadow: none;
+	width: 100%;
+	/* border-left: none; */
+	padding: .5rem 0;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+.calendar .dates-container button:hover, .calendar .hours-container button:hover  {
+	background-color: rgba(0,0,0,0.1);
+}
+.calendar .active {
+	background-color: var(--primary) !important;
+	color: white;
+}
+.calendar input{
+	display: none;
+}
+
+
 /* NOVEDAD */
 article.novedad {
 	border: 0px solid black;
@@ -430,4 +497,106 @@ p.success-message {
 	background-color: #d4edda;
 	border-color: #c3e6cb;
 	color: #155724;
+}
+
+/* IMAGE SLIDER */
+section.image-slider {
+	max-width: 1000px;
+	position: relative;
+	margin: auto;
+}
+
+.mySlides {
+	display: none;
+}
+.mySlides>img {
+	object-fit: cover;
+}
+
+/* Next & previous buttons */
+.prev-button,
+.next-button {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	margin-top: -22px;
+	padding: 16px;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next-button {
+	right: 0;
+	border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev-button:hover,
+.next-button:hover {
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Fading animation */
+.fade {
+	-webkit-animation-name: fade;
+	-webkit-animation-duration: 2s;
+	animation-name: fade;
+	animation-duration: 2s;
+}
+.show {
+	animation: show .5s;
+	animation-fill-mode: both;
+}
+
+@keyframes show {
+	from {
+		transform: scale(0.7);
+		opacity: 0
+	}
+
+	to {
+		transform: scale(1);
+		opacity: 1
+	}
+}
+
+@-webkit-keyframes fade {
+	from {
+		opacity: .5
+	}
+
+	to {
+		opacity: 1
+	}
+}
+
+@keyframes fade {
+	from {
+		opacity: .5
+	}
+
+	to {
+		opacity: 1
+	}
+}
+
+.dot {
+	cursor: pointer;
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	background-color: #bbb;
+	border-radius: 50%;
+	display: inline-block;
+	transition: background-color 0.6s ease;
+}
+.active-dot,
+.dot:hover {
+	background-color: #717171;
 }

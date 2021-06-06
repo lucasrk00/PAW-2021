@@ -56,6 +56,7 @@ define("FORM_FIELDS", [
 	]*/
 ]);
 class TurnoController extends BaseController{
+	private $turnoActual = "0";
 	public static function getEspecialidades() {
 		return [
 			"dentista" => "Dentista",
@@ -73,6 +74,15 @@ class TurnoController extends BaseController{
 		if (!$request->isLoggedIn()) {
 			$request->redirect('/login');
 		}
+	}
+	public function turneroView(Request $request) {
+		require $this->viewPath . '/turnero.view.php';
+	}
+	public function turneroProfesionalView(Request $request) {
+		require $this->viewPath . '/turneroProfesional.view.php';
+	}
+	public function turneroClienteView(Request $request) {
+		require $this->viewPath . '/turneroCliente.view.php';
 	}
 	public function listaDeTurnosView(Request $request) {
 		$this->authMiddleware($request);

@@ -46,38 +46,12 @@
 					</select>
 
 					<!-- Fecha del turno -->
-					<label for="fecha">Fecha* :</label>
-					<input type="date" name="fecha" id="fecha" value="<?= $fecha ?>" required min="<?= date("Y-m-d") ?>" />
+					<!-- <label for="fecha">Fecha* :</label>
+					<input type="date" name="fecha" id="fecha" value="<?= $fecha ?>" required min="<?= date("Y-m-d") ?>" /> -->
 
 					<!--Horario del turno-->
-					<label for="hora">Hora* :</label>
-					<input type="time" name="hora" id="hora" value="<?= $hora ?>" required />
-				</fieldset>
-
-				<!--<fieldset>
-					<legend>Datos del Paciente: </legend> 
-
-					<label for="nombreape">Nombre y Apellido* :</label>
-					<input type="text" name="nombreape" id="nombreape" required placeholder="ej. Juan Pérez" />
-
-					<label for="email">Correo Electrónico* :</label>
-					<input type="email" name="email" id="email" required placeholder="ej. juan@ejemplo.com" />
-
-					<label for="phone">Teléfono Celular* :</label>
-					<input type="tel" name="phone" id="phone" required placeholder="ej. 111111111" />
-
-					<label for="nacimiento">Fecha de Nacimiento* :</label>
-					<input type="date" name="nacimiento" id="nacimiento" required max="" />
-				</fieldset>-->
-				<fieldset class="file-upload">
-					<!--<div class="file-upload">-->
-						<p>Arrastre el archivo que desee subir</p>
-						<p>o haga click en</p>
-						<label class="button secondary" for="estudioClinico">
-							Subir archivo
-						</label>
-						<input type="file" value="Adjuntar archivo" name="estudioClinico" id="estudioClinico" accept=".png, .jpg, .jpeg" />
-					<!--</div>-->
+					<!-- <label for="hora">Hora* :</label>
+					<input type="time" name="hora" id="hora" value="<?= $hora ?>" required /> -->
 				</fieldset>
 				<fieldset>
 					<!-- Boton que limpia los campos del formulario -->
