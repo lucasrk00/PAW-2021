@@ -54,10 +54,13 @@
 					<input type="time" name="hora" id="hora" value="<?= $hora ?>" required /> -->
 				</fieldset>
 				<fieldset>
+					<legend>Adjuntar Archivo:</legend>
+				</fieldset>
+				<fieldset>
 					<!-- Boton que limpia los campos del formulario -->
-					<button>Limpiar</button>
+					<button class="clear danger">Limpiar</button>
 					<!-- Botón que envia el formulario -->
-					<input type="submit" value="Solicitar Turno" />
+					<button class="primary"> Solicitar Turno </button>
 				</fieldset>
 			</form>
 		</section>

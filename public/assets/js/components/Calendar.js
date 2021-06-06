@@ -4,6 +4,9 @@ class Calendar {
 			parent = document.querySelector(parent);
 		if (!parent) throw new Error('Invalid parent');
 
+		if (typeof insertBefore === 'string') 
+			insertBefore = parent.querySelector(insertBefore);
+
 		this.selectedDate = null;
 		this.selectedHour = null;
 
@@ -34,8 +37,6 @@ class Calendar {
 		this.generateCalendar();
 
 		if (insertBefore) {
-			if (typeof insertBefore === 'string') 
-				insertBefore = parent.querySelector(insertBefore);
 			parent.insertBefore(this.element, insertBefore);
 		} else {
 			parent.appendChild(this.element);
@@ -111,6 +112,8 @@ class Calendar {
 	// ######
 	setProfessional(professional) {
 		this.professional = professional;
+		this.selectedDate = null;
+		this.selectedHour = null;
 		this.generateCalendar();
 	}
 

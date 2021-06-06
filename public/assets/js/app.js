@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 	if (window.location.pathname === '/solicitarTurno') {
 		const professionals = await service.fetchProfessionals();
 		const professionalInput = document.querySelector('main form select#profesional');
-		const dragAndDrop = new DragAndDrop('main section form', 'fieldset:last-child');
-		const calendar = new Calendar('main section form', dragAndDrop.element);
+		const dragAndDrop = new DragAndDrop('main section form fieldset:nth-last-child(2)');
+		const calendar = new Calendar('main section fieldset:first-child');
 
 		function updateProfessional() {
 			const professional = professionals.find( prof => String(prof.id)  == professionalInput.value);
@@ -26,6 +26,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 		}
 		updateProfessional();
 		professionalInput.addEventListener('input', updateProfessional);
+
+		document.querySelector('main form fieldset button.clear' ).addEventListener('click', e => {
+			e.preventDefault();
+			const toReset = document.querySelectorAll('main form fieldset *:is(input, select)');
+			calendar.setProfessional(null);
+			dragAndDrop.removeFile();
+			for (const el of toReset) {
+				el.value = '';
+			}
+			
+		});
 	}
 
 	if (window.location.pathname === '/') {

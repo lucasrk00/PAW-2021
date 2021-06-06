@@ -4,7 +4,11 @@ class DragAndDrop {
 			parent = document.querySelector(parent);
 		if (!parent) throw new Error('Invalid parent');
 
+		if (typeof insertBefore === 'string') 
+			insertBefore = parent.querySelector(insertBefore);
+
 		const p = PAW.createElement('p', 'Seleccione una imagen o arrastre y suelte las imágenes aquí');
+		const selectedContainer = PAW.createElement('p', null, { class: 'file' });
 
 		const label = PAW.createElement('label', 'Seleccionar Archivo', {
 			class: 'button secondary',
@@ -18,7 +22,7 @@ class DragAndDrop {
 			id: 'estudioClinico'
 		});
 
-		const fieldset = PAW.createElement('fieldset', [p, label, input], { class: 'file-upload' });
+		const fieldset = PAW.createElement('div', [p, selectedContainer, label, input], { class: 'file-upload' });
 
 		fieldset.addEventListener('dragenter', this.handleDragEnter.bind(this));
 
@@ -26,16 +30,16 @@ class DragAndDrop {
 
 		fieldset.addEventListener('dragover', e => { e.preventDefault(); e.stopPropagation() });
 		fieldset.addEventListener('drop', this.handleDrop.bind(this));
+		input.addEventListener('input', this.handleFileChange.bind(this));
 
 		this.fileInput = input;
+		this.selectedContainer = selectedContainer;
 		this.enter = 0;
 
 		this.element = fieldset;
 		this.parent = parent;
 
 		if (insertBefore) {
-			if (typeof insertBefore === 'string') 
-				insertBefore = parent.querySelector(insertBefore);
 			parent.insertBefore(this.element, insertBefore);
 		} else {
 			parent.appendChild(this.element);
@@ -65,5 +69,21 @@ class DragAndDrop {
 		this.enter = 0;
 		this.fileInput.files = e.dataTransfer.files;
 		this.element.classList.remove('over');
+		this.handleFileChange();
+	}
+	removeFile(e) {
+		if (e) e.preventDefault();
+		this.fileInput.value='';
+		this.selectedContainer.innerHTML = '';
+	}
+	handleFileChange() {
+		this.selectedContainer.innerHTML = '';
+		if (this.fileInput.files.length <= 0) return;
+		const file = [...this.fileInput.files].pop();
+		const name = PAW.createElement('span', file.name);
+		const removeButton = PAW.createElement('button', 'x', { class: 'remove' });
+		removeButton.addEventListener('click', this.removeFile.bind(this));
+		this.selectedContainer.appendChild(name);
+		this.selectedContainer.appendChild(removeButton);
 	}
 }

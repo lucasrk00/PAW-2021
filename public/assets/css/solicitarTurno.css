@@ -16,8 +16,11 @@ main section form fieldset legend {
 	font-weight: bold;
 	font-size: 1.3rem;
 }
+.calendar {
+	grid-column: 1 / -1;
+}
 
-main section form fieldset:nth-last-of-type(-n+2) {
+main section form fieldset:last-child {
 	display: flex;
 	width: 100%;
 	text-align: center;
@@ -25,35 +28,13 @@ main section form fieldset:nth-last-of-type(-n+2) {
 	gap: 4rem;
 }
 
+main section form fieldset:nth-last-child(2) {
+	grid-template-columns: 1fr;
+}
 button, input[type="submit"] {
 	width: 10rem;
 }
 
-main section form fieldset button {
-	background-color: var(--secondary);
-}
-
-main section form fieldset.file-upload {
-	border-radius: 5px;
-	border: 2px dashed transparent;
-	/* border: 1px solid var(--alternative);
-	background-color: var(--light-dark); */
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 0.5rem;
-	padding: 1rem;
-	box-sizing: content-box;
-	margin:auto;
-}
-main section form fieldset.file-upload label {
-	margin-top: .5rem;
-	padding: .5rem 1rem;
-}
-main section form fieldset.file-upload.over {
-	border-color:rgba(0,0,0,0.3);
-}
 
 @media screen and (max-width: 650px) {
 	main section {

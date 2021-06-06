@@ -391,6 +391,48 @@ article>*:not(a) {
 	text-align: left;
 }
 
+/* Drag And Drop */
+.file-upload {
+	border-radius: 5px;
+	border: 2px dashed transparent;
+	/* border: 1px solid var(--alternative);
+	background-color: var(--light-dark); */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	padding: 1rem;
+	box-sizing: content-box;
+	margin:auto;
+}
+.file-upload label {
+	margin-top: .5rem;
+	padding: .5rem 1rem;
+}
+.file-upload .file {
+	font-size: .8rem;
+	color: var(--light-text);
+	text-align: left;
+	width: 100%;
+	margin-top:.3rem;
+}
+.file-upload .file button {
+	background-color: transparent;
+	border: none;
+	box-shadow: none;
+	width: auto;
+	margin: 0;
+	padding: 0 .5rem;
+}
+.file-upload .file button:hover {
+	text-decoration: underline;
+	color: var(--danger);
+}
+.file-upload.over {
+	border-color:rgba(0,0,0,0.3);
+}
+
 /* PAGINACIÓN */
 ul.paginacion {
 	display: flex;
