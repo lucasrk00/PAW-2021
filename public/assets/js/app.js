@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 	if (header && headerNav) {
 		const hmbMenu = new HamburgerMenu(header, headerNav);
 	}
-
+	handleMultilevelMenu();
 	if (window.location.pathname === '/solicitarTurno') {
 		const professionals = await service.fetchProfessionals();
 		const professionalInput = document.querySelector('main form select#profesional');
@@ -55,3 +55,32 @@ document.addEventListener('DOMContentLoaded', async () => {
 		const clientAppointment = new ClientAppointment('main');
 	}
 });
+
+
+
+function handleSingleMultilevelMenu(e, parent) {
+	const { target } = e;
+	if (parent.querySelector('ul').contains(target)) return;
+
+	e.preventDefault();
+	e.stopPropagation(); // Previene el eventListener del click que lo cerraría
+
+	if (!parent.classList.contains('active'))
+		parent.classList.add('active')
+	else parent.classList.remove('active');
+}
+function handleMultilevelMenu() {
+	const subnavs = document.querySelectorAll('header nav ul li.subnav');
+	document.addEventListener('click', e => {
+		const { target } = e;
+		const activeSubnavs = document.querySelectorAll('header nav ul li.subnav.active > ul');
+		for (activeSubnav of activeSubnavs) {
+			if (!activeSubnav.contains(target)) {
+				activeSubnav.parentElement.classList.remove('active');
+			}
+		}
+	});
+	for (const subnav of subnavs) {
+		subnav.addEventListener('click', e => handleSingleMultilevelMenu(e, subnav));
+	}
+}
