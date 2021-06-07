@@ -35,11 +35,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 			for (const el of toReset) {
 				el.value = '';
 			}
-			
 		});
 	}
 
-	if (window.location.pathname === '/') {
+	if (window.location.pathname === '/institucion') {
 		const imageCarousel = new ImageCarousel('main', [
 			'/assets/images/hospital1.jpg',
 			'/assets/images/hospital2.jpg',
@@ -48,11 +47,25 @@ document.addEventListener('DOMContentLoaded', async () => {
 	}
 
 	if (window.location.pathname === '/turnero') {
+		const turnos = await service.fetchAppointments();
+
 		const appointments = new Appointments('main');
+		setInterval(() => {
+			// Fetchear turnos
+			appointments.updateAppointments(turnos);
+		}, 2 * 1000);
 	}
 
 	if (window.location.pathname === '/turneroCliente') {
+		const turnos = await service.fetchAppointments();
+		const turnoCliente = await service.fetchClientAppointment();
+
 		const clientAppointment = new ClientAppointment('main');
+		clientAppointment.setClientAppointment(turnoCliente);
+		setInterval(() => {
+			// Fetchear turnos
+			clientAppointment.updateAppointments(turnos);
+		}, 2 * 1000);
 	}
 });
 
