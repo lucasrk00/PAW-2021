@@ -679,18 +679,13 @@ p.success-message {
 
 /* Fading animation */
 .image-slider .fade {
-	-webkit-animation-name: fade;
-	-webkit-animation-duration: 2s;
-	animation-name: fade;
-	animation-duration: 2s;
+	animation: fade 2s both;
 }
 .image-slider .show {
-	animation: show .5s;
-	animation-fill-mode: both;
+	animation: show .5s both;
 }
 .image-slider .translate {
-	animation: translate .5s;
-	animation-fill-mode: both;
+	animation: translate .5s both;
 }
 
 @keyframes loading {
