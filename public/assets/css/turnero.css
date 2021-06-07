@@ -1,43 +1,74 @@
 body {
-	background-color: white;
 	margin: 0;
 }
 main {
 	margin: 0;
+	height: 100vh;
 }
-main section {
+main > section {
+	height: 100%;
+	display: flex;
+	flex-flow:column;
 	padding: 0;
+	background-color: transparent;
 }
-main section h1 {
+main > section h1 {
 	display: flex;
 	justify-content: center;
 	background-color: var(--primary);
 	color: white;
 	padding: 2rem;
+	font-size: 4rem;
 	border-bottom: solid var(--secondary) 3px;
 }
-main section ul {
-	display: flex;
-	flex-flow: row wrap;
+main > section ul {
+	display: grid;
+	height: 100%;
 	gap: 2rem;
 	padding: 1.5rem;
+	grid-auto-flow: column;
 }
 
-main section ul li {
+main > section ul li {
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	border: solid var(--secondary) 3px;
 	border-radius: 10px;
-	gap: 1rem;
-	background-color: var(--background-color);
-	padding: 3rem 1.5rem;
+	background-color: white;
+
+}
+main > section ul li > section {
+	height: 100%;
+	display: flex;
+	flex-flow: column;
+	background-color: transparent;
+	border-bottom: 1px solid rgba(0,0,0,.1);
+	padding: 1rem;
+}
+main > section ul li > section:first-child {
+	height: auto;
+	background-color: var(--primary);
+	color: white;
+	border: 0;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	font-weight: bold;
+}
+
+main > section ul li > section:not(:first-child) p:last-child {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 p {
-	font-size: 2rem;
+	font-size: 3rem;
 }
 p.id-turno {
 	display: flex;
 	justify-content: center;
 	font-weight: bold;
+	font-size: 4rem;
 	color: var(--primary);
 }

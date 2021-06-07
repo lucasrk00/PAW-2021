@@ -1,8 +1,7 @@
 const professionals = [
 	{
 		id: 1,
-		nombre: 'Facu',
-		apellido: 'silva',
+		nombre: 'Ali Vefa',
 		availableDays: ['Lunes', 'Martes', 'Miércoles'],
 		start: {
 			hour: 9,
@@ -28,8 +27,7 @@ const professionals = [
 	},
 	{
 		id: 2,
-		nombre: 'Facu',
-		apellido: 'silva',
+		nombre: 'Lucas Rivero',
 		availableDays: ['Miércoles', 'Jueves', 'Viernes'],
 		start: {
 			hour: 12,
@@ -55,8 +53,7 @@ const professionals = [
 	},
 	{
 		id: 3,
-		nombre: 'Facu',
-		apellido: 'silva',
+		nombre: 'Gregory House',
 		availableDays: ['Miércoles', 'Jueves', 'Viernes'],
 		start: {
 			hour: 12,
@@ -95,7 +92,6 @@ const appointments = {};
 for (const professional of professionals) {
 	appointments[professional.id] = {
 		nombre: professional.nombre,
-		apellido: professional.apellido,
 		appointments: professional.appointments,
 	};
 }
@@ -111,14 +107,29 @@ const service = {
 	async fetchAppointments(filters) {
 		return appointments;
 	},
+	async fetchAppointment(id) {
+		for (const professionalId in appointments) {
+			const appointment = appointments[professionalId]
+				.appointments.find(app => app.id === id);
+			if (appointment) return appointment;
+		}
+		return null;
+	},
 	async fetchClientAppointment(filters) {
 		return clientAppointment;
 	},
-	async getProfessionalById(id) {
+	async fetchProfessionalById(id) {
 		return professionals.filter(professional => professional.id === id)[0];
 	},
 	async fetchProfessionalAppointments(filters) {
-		const professional = await this.getProfessionalById(filters.id);
+		const professional = await this.fetchProfessionalById(filters.id);
 		return professional.appointments;
+	},
+	async updateAppointment(appointmentId, data) {
+		const appointment = await this.fetchAppointment(appointmentId);
+		for (const key in data) {
+			appointment[key] = data[key];
+		}
+		return appointment;
 	}
 }

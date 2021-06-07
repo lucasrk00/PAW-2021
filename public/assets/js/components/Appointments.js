@@ -21,18 +21,12 @@ class Appointments {
 		});
 
 		parent.appendChild(this.appointmentSection);
+		parent.appendChild(this.soundEffect);
 	}
 
 	updateAppointments(professionalsAppointments) {
 		this.professionalsAppointments = professionalsAppointments;
 		let hasNewCurrentAppointment = false;
-		// Después de la primera iteración cambia el valor de un turno para probar que se actualizan los elementos
-		if (this.cambiar) {
-			professionalsAppointments[1].appointments[0].state = 'attending';
-			professionalsAppointments[3].appointments[1].state = 'attended';
-			professionalsAppointments[3].appointments[2].state = 'attending';
-		}
-		this.cambiar = true;
 
 		// Actualiza y hace re render
 		let isNextAppointment = false;
@@ -73,24 +67,31 @@ class Appointments {
 			if (!this.currentAppointments[professionalIndex] || !this.currentAppointments[professionalIndex].id) continue;
 
 			/* Create all html elements on appointment */
-			const professionalName = this.professionalsAppointments[professionalIndex].nombre + ' ' + this.professionalsAppointments[professionalIndex].apellido;
-			const professionalNameElement = PAW.createElement('p', `Profesional: ${professionalName}`);
+			const professionalName = this.professionalsAppointments[professionalIndex].nombre;
+
+			const professionalTitle = PAW.createElement('p', 'Profesional:');
+			const professionalNameElement = PAW.createElement('p', `Dr. ${professionalName}`);
+			const professionalContainer = PAW.createElement('section', [ professionalNameElement], { class: 'professional' })
+
 			const currentAppointmentTitleElement = PAW.createElement('p', 'Turno actual:');
 			const currentAppointmentElement = PAW.createElement('p', this.currentAppointments[professionalIndex].id, { class: 'id-turno' });
+			const currentAppointmentContianer = PAW.createElement('section', [currentAppointmentTitleElement, currentAppointmentElement], { class: 'current-appointment' });
+
 			let nextAppointmentTitleElement = PAW.createElement('p', '');
 			let nextAppointmentElement = PAW.createElement('p', '', { class: 'id-turno' });
+			const nextAppointmentContainer = PAW.createElement('section', [nextAppointmentTitleElement, nextAppointmentElement], { class: 'next-appointment' });
+
 			/* Check if there's any pending appointment */
 			if (this.nextAppointments[professionalIndex] && this.nextAppointments[professionalIndex].id) {
 				nextAppointmentTitleElement.textContent = 'Turno siguiente: ';
 				nextAppointmentElement.textContent = this.nextAppointments[professionalIndex].id;
 			}
 			const appointmentElement = PAW.createElement('li', [
-				professionalNameElement,
-				currentAppointmentTitleElement,
-				currentAppointmentElement,
-				nextAppointmentTitleElement,
-				nextAppointmentElement,
+				professionalContainer,
+				currentAppointmentContianer,
+				nextAppointmentContainer
 			]);
+
 			this.appointmentsList.appendChild(appointmentElement);
 		}
 

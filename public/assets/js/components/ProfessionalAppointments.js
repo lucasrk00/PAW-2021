@@ -1,5 +1,6 @@
 class ProfessionalAppointments {
 	constructor(parent) {
+		this.events = new Map();
 		if (typeof parent === 'string')
 			parent = document.querySelector(parent);
 		if (!parent) throw new Error('Invalid parent');
@@ -36,11 +37,7 @@ class ProfessionalAppointments {
 
 	changeCurrentAppointment(appointment) {
 		// Disparar llamado
-		if (this.currentAppointment) this.appointments[this.appointments.indexOf(this.currentAppointment)].state = 'attended';
-
-		this.appointments[this.appointments.indexOf(appointment)].state = 'attending';
-		this.currentAppointment = appointment;
-		this.generateAppointmentsTable();
+		this.callEvent('changeAppointment', appointment);
 	}
 
 	// #########
@@ -79,5 +76,23 @@ class ProfessionalAppointments {
 		const day = PAW.DOTWNAME[date.getDay()];
 		const month = PAW.MONTH[date.getMonth()];
 		return `${day} ${date.getDate()} de ${month}. del ${date.getFullYear()}`;
+	}
+
+	// #######
+	// Events
+	// #####
+
+	addEventListener(event, callback) {
+		let events = this.events.get(event) || [];
+		events.push(callback);
+		this.events.set(event, events);
+	}
+
+	callEvent(event, ...args) {
+		const events = this.events.get(event) || [];
+		for (const eventFn of events ) {
+			if (typeof eventFn === 'function')
+				eventFn(...args);
+		}
 	}
 }

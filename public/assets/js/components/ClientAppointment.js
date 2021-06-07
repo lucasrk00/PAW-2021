@@ -28,11 +28,6 @@ class ClientAppointment {
 	updateAppointments(professionalsAppointments) {
 		this.professionalsAppointments = professionalsAppointments;
 		const attendingAppointments = [];
-		if (this.changeAppointments) {
-			this.professionalsAppointments[3].appointments[1].state = 'attended';
-			this.professionalsAppointments[3].appointments[2].state = 'attending';
-		}
-		this.changeAppointments = true;
 
 		for (const professionalIndex in this.professionalsAppointments) {
 			for (const appointment of this.professionalsAppointments[professionalIndex].appointments) {
