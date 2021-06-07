@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 		PAW.loadScript('/assets/js/components/ImageCarousel.js', 'image-carousel'),
 		PAW.loadScript('/assets/js/components/Appointments.js', 'appointments'),
 		PAW.loadScript('/assets/js/components/ClientAppointment.js', 'client-appointment'),
+		PAW.loadScript('/assets/js/components/ProfessionalAppointments.js', 'professional-appointment'),
 	])
 	const header = document.querySelector('header');
 	const headerNav = document.querySelector('header nav');
@@ -50,10 +51,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 		const turnos = await service.fetchAppointments();
 
 		const appointments = new Appointments('main');
+		appointments.updateAppointments(turnos)
 		setInterval(() => {
 			// Fetchear turnos
 			appointments.updateAppointments(turnos);
-		}, 2 * 1000);
+		}, 10 * 1000);
 	}
 
 	if (window.location.pathname === '/turneroCliente') {
@@ -65,7 +67,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 		setInterval(() => {
 			// Fetchear turnos
 			clientAppointment.updateAppointments(turnos);
-		}, 2 * 1000);
+		}, 10 * 1000);
+	}
+
+	if (window.location.pathname === '/turneroProfesional') {
+		const turnos = await service.fetchProfessionalAppointments({ id: 3 });
+
+		const professionalAppointments = new ProfessionalAppointments('main');
+		professionalAppointments.setAppointments(turnos);
 	}
 });
 

@@ -82,17 +82,26 @@ const professionals = [
 				timestamp: new Date('2021-06-11 14:55:00'),
 				id: 'A3',
 				state: 'pending'
+			},
+			{
+				timestamp: new Date('2021-06-11 15:00:00'),
+				id: 'A4',
+				state: 'pending'
 			}
 		]
 	}
 ]
-const appointments = [];
+const appointments = {};
 for (const professional of professionals) {
-	appointments.push(...professional.appointments);
+	appointments[professional.id] = {
+		nombre: professional.nombre,
+		apellido: professional.apellido,
+		appointments: professional.appointments,
+	};
 }
 
 const clientAppointment = {
-	id: 'A2'
+	id: 'A3'
 }
 
 const service = {
@@ -104,5 +113,12 @@ const service = {
 	},
 	async fetchClientAppointment(filters) {
 		return clientAppointment;
+	},
+	async getProfessionalById(id) {
+		return professionals.filter(professional => professional.id === id)[0];
+	},
+	async fetchProfessionalAppointments(filters) {
+		const professional = await this.getProfessionalById(filters.id);
+		return professional.appointments;
 	}
 }

@@ -5,7 +5,7 @@
 	<?php
 	require 'parts/head.view.php'
 	?>
-	<link rel="stylesheet" type="text/css" href="/assets/css/home.css" />
+	<link rel="stylesheet" type="text/css" href="/assets/css/turneroProfesional.css" />
 </head>
 
 <body>
@@ -15,7 +15,6 @@
 	?>
 	<!-- Contenido del sitio -->
 	<main class="home">
-		
 	</main>
 	<!-- Footer del sitio -->
 	<?php

@@ -1,15 +1,43 @@
 body {
 	background-color: white;
-}
-main {
-	display: flex;
-	flex-direction: row;
 	margin: 0;
 }
-
-section.turno-actual {
+main {
+	margin: 0;
+}
+main section {
+	padding: 0;
+}
+main section h1 {
+	display: flex;
+	justify-content: center;
+	background-color: var(--primary);
+	color: white;
+	padding: 2rem;
+	border-bottom: solid var(--secondary) 3px;
+}
+main section ul {
+	display: flex;
+	flex-flow: row wrap;
+	gap: 2rem;
+	padding: 1.5rem;
 }
 
-section.turnos-recientes {
-	margin-left: auto;
+main section ul li {
+	display: flex;
+	flex-direction: column;
+	border: solid var(--secondary) 3px;
+	border-radius: 10px;
+	gap: 1rem;
+	background-color: var(--background-color);
+	padding: 3rem 1.5rem;
+}
+p {
+	font-size: 2rem;
+}
+p.id-turno {
+	display: flex;
+	justify-content: center;
+	font-weight: bold;
+	color: var(--primary);
 }

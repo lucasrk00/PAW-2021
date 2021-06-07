@@ -3,18 +3,19 @@ class ClientAppointment {
 		if (typeof parent === 'string') 
 			parent = document.querySelector(parent);
 		if (!parent) throw new Error('Invalid parent');
+		this.changeAppointments = false;
 
 		this.soundEffect = PAW.createElement('audio', '', {
 			src: '/assets/sounds/siguienteTurno.mp3',
 			id: 'soundEffect',
 		});
 
-		const title = PAW.createElement('h1', 'Tu turno:' );
-		this.clientAppointmentElement = PAW.createElement('h2', this.clientAppointment);
+		const title = PAW.createElement('h2', 'Tu turno:' );
+		this.clientAppointmentElement = PAW.createElement('h3', this.clientAppointment);
 
-		this.attendingTitle = PAW.createElement('h3', 'Turnos siendo atendidos: ');
+		this.attendingTitle = PAW.createElement('h2', 'Turnos siendo atendidos: ');
 		this.appointmentSection = PAW.createElement('section', [title, this.clientAppointmentElement, this.soundEffect]);
-		this.attendingAppointmentSection = PAW.createElement('section', attendingTitle);
+		this.attendingAppointmentSection = PAW.createElement('section', this.attendingTitle);
 		parent.appendChild(this.appointmentSection);
 		parent.appendChild(this.attendingAppointmentSection);
 	}
@@ -24,17 +25,27 @@ class ClientAppointment {
 		this.clientAppointment = appointment;
 	}
 
-	updateAppointments(appointments) {
-		this.attendingAppointments = appointments.filter(appointment => appointment.state === 'attending');
-		// Actualiza y hace re render
-		for (const appointment of this.attendingAppointments) {
-			// Fijarse si el currentAppoitnment es distino al previo
-			if (this.clientAppointment && this.clientAppointment.id === appointment.id) {
-				this.playSound();
-				this.phoneVibrate();
-				break;
-			};
+	updateAppointments(professionalsAppointments) {
+		this.professionalsAppointments = professionalsAppointments;
+		const attendingAppointments = [];
+		if (this.changeAppointments) {
+			this.professionalsAppointments[3].appointments[1].state = 'attended';
+			this.professionalsAppointments[3].appointments[2].state = 'attending';
 		}
+		this.changeAppointments = true;
+
+		for (const professionalIndex in this.professionalsAppointments) {
+			for (const appointment of this.professionalsAppointments[professionalIndex].appointments) {
+				if (appointment.state !== 'attending') continue;
+				attendingAppointments.push(appointment);
+				if (this.clientAppointment && appointment.id === this.clientAppointment.id) {
+					this.playSound();
+					this.phoneVibrate();
+					this.clientAppointment = '';
+				}
+			}
+		}
+		this.attendingAppointments = attendingAppointments;
 		this.createAttendingAppointmentsList();
 	}
 
@@ -53,7 +64,7 @@ class ClientAppointment {
 
 		const attendingAppointmentsList = [];
 		for (const attendingAppointment of this.attendingAppointments) {
-			const attendingAppointmentElement = PAW.createElement('li', attendingAppointment.id);
+			const attendingAppointmentElement = PAW.createElement('li', PAW.createElement('h3', attendingAppointment.id));
 			attendingAppointmentsList.push(attendingAppointmentElement);
 		}
 

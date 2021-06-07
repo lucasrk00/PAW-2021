@@ -1,64 +1,60 @@
 
 class Appointments {
 	constructor(parent) {
-		if (typeof parent === 'string') 
+		if (typeof parent === 'string')
 			parent = document.querySelector(parent);
 		if (!parent) throw new Error('Invalid parent');
-		this.currentAppointment;
-		this.attendedAppointments = [];
+		this.currentAppointments = {};
+		this.nextAppointments = {};
+		this.cambiar = false;
 
-		this.appointmentElement = PAW.createElement('h2', '');
-		const title = PAW.createElement('h1', 'Atentiendo a');
+		this.title = PAW.createElement('h1', 'TURNOS SIENDO ATENDIDOS');
 
 		this.soundEffect = PAW.createElement('audio', '', {
 			src: '/assets/sounds/siguienteTurno.mp3',
 			id: 'soundEffect',
 		});
+		this.appointmentsList = PAW.createElement('ul', '');
 
-		this.currentAppointmentSection = PAW.createElement('section', [title, this.appointmentElement, this.soundEffect], {
-			class: 'turno-actual'
+		this.appointmentSection = PAW.createElement('section', [this.title, this.appointmentsList, this.soundEffect], {
+			class: 'turnos-actuales'
 		});
 
-		this.attendedAppointmentsSection = PAW.createElement('section', this.attendedAppointmentsList, {
-			class: 'turnos-recientes'
-		});
-
-		parent.appendChild(this.currentAppointmentSection);
-		parent.appendChild(this.attendedAppointmentsSection);
+		parent.appendChild(this.appointmentSection);
 	}
 
-	isCurrentAppointment(appointment) {
+	updateAppointments(professionalsAppointments) {
+		this.professionalsAppointments = professionalsAppointments;
+		let hasNewCurrentAppointment = false;
+		// Después de la primera iteración cambia el valor de un turno para probar que se actualizan los elementos
+		if (this.cambiar) {
+			professionalsAppointments[1].appointments[0].state = 'attending';
+			professionalsAppointments[3].appointments[1].state = 'attended';
+			professionalsAppointments[3].appointments[2].state = 'attending';
+		}
+		this.cambiar = true;
 
-	}
-	updateAppointments(appointments) {
 		// Actualiza y hace re render
-		for (const  appointment of appointments) {
-			// Fijarse si el currentAppoitnment es distino al previo
-			if (appointment.state === 'attending') {
-				if (!this.currentAppointment || this.currentAppointment.id !== appointment.id) {
-					this.updateCurrentAppointment(appointment);
-					this.updateAttendedAppointments(appointments);
-					this.generateAppointmentsList();
-					break;
-				};
+		let isNextAppointment = false;
+		for (const professionalIndex in professionalsAppointments) {
+			for (const appointment of professionalsAppointments[professionalIndex].appointments) {
+				if (isNextAppointment) {
+					this.nextAppointments[professionalIndex] = appointment;
+					isNextAppointment = false;
+				} else if ((!this.currentAppointments[professionalIndex] && appointment.state === 'attending' ) || (appointment.state === 'attending' && this.currentAppointments[professionalIndex].id !== appointment.id)) {
+					this.currentAppointments[professionalIndex] = appointment;
+					isNextAppointment = true;
+					hasNewCurrentAppointment = true;
+				}
 			}
-		}
-	}
-
-	updateCurrentAppointment(appointment) {
-		this.currentAppointment = appointment;
-		this.playSound();
-	}
-
-	updateAttendedAppointments(appointments) {
-		const attendedAppointments = appointments.filter(appointment => appointment.state === 'attended');
-		const newAttendedAppointments = this.attendedAppointments;
-		for (const attendedAppointment of attendedAppointments) {
-			if (!newAttendedAppointments || newAttendedAppointments.indexOf(attendedAppointment) === -1) {
-				newAttendedAppointments.push(attendedAppointment);
+			if (isNextAppointment) {
+				this.nextAppointments[professionalIndex] = '';
 			}
+			isNextAppointment = false;
 		}
-		this.attendedAppointments = newAttendedAppointments;
+		if (hasNewCurrentAppointment) this.playSound();
+
+		this.generateAppointmentsList();
 	}
 
 	playSound() {
@@ -69,19 +65,34 @@ class Appointments {
 	// Creators
 	// ########
 	generateAppointmentsList() {
-		this.appointmentElement.textContent = this.currentAppointment.id;
+		this.appointmentsList.innerHTML = '';
+		const appointmentElementsList = [];
 
-		this.attendedAppointmentsSection.innerHTML = '';
+		for (const professionalIndex in this.professionalsAppointments) {
+			/* Check if professional has appointments */
+			if (!this.currentAppointments[professionalIndex] || !this.currentAppointments[professionalIndex].id) continue;
 
-		const attendedAppointmentsList = [];
-		for (const attendedAppointment of this.attendedAppointments) {
-			const attendedAppointmentElement = PAW.createElement('li', attendedAppointment.id);
-			attendedAppointmentsList.push(attendedAppointmentElement);
+			/* Create all html elements on appointment */
+			const professionalName = this.professionalsAppointments[professionalIndex].nombre + ' ' + this.professionalsAppointments[professionalIndex].apellido;
+			const professionalNameElement = PAW.createElement('p', `Profesional: ${professionalName}`);
+			const currentAppointmentTitleElement = PAW.createElement('p', 'Turno actual:');
+			const currentAppointmentElement = PAW.createElement('p', this.currentAppointments[professionalIndex].id, { class: 'id-turno' });
+			let nextAppointmentTitleElement = PAW.createElement('p', '');
+			let nextAppointmentElement = PAW.createElement('p', '', { class: 'id-turno' });
+			/* Check if there's any pending appointment */
+			if (this.nextAppointments[professionalIndex] && this.nextAppointments[professionalIndex].id) {
+				nextAppointmentTitleElement.textContent = 'Turno siguiente: ';
+				nextAppointmentElement.textContent = this.nextAppointments[professionalIndex].id;
+			}
+			const appointmentElement = PAW.createElement('li', [
+				professionalNameElement,
+				currentAppointmentTitleElement,
+				currentAppointmentElement,
+				nextAppointmentTitleElement,
+				nextAppointmentElement,
+			]);
+			this.appointmentsList.appendChild(appointmentElement);
 		}
 
-		const attendedAppointmentsListElement = PAW.createElement('ul', [...attendedAppointmentsList], {
-			class: 'lista-turnos'
-		});
-		this.attendedAppointmentsSection.appendChild(attendedAppointmentsListElement);
 	}
 }
