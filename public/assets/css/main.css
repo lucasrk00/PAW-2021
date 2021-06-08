@@ -84,7 +84,7 @@ header nav ul {
 	align-items: center;
 }
 
-header nav ul li:nth-last-child(2) {
+header nav > ul > li:nth-last-child(2) {
 	margin-left: auto;
 }
 header nav ul li a {
@@ -125,13 +125,13 @@ header nav ul li.subnav > ul {
 	display: none;
 	position: absolute;
 	top: 100%;
-	left: -50%;
 	border: 1px solid rgba(0,0,0,.1);
 	border-top: none;
 	padding: .5rem 1rem;
 	padding-bottom: 1rem;
 	background-color: white;
 	flex-flow: column;
+	align-items: start;
 }
 header nav ul li.subnav.active > ul, header nav ul li.subnav:hover > ul {
 	display: flex;

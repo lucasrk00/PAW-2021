@@ -19,11 +19,11 @@
 			<li><a href="/institucion">Institución</a></li>
 			<li><a href="/noticias">Noticias</a></li>
 			<li class="subnav">
-				<a>Test</a>
+				<a>Turneros</a>
 				<ul>
 					<li> <a href="/turnero">Turnero</a> </li>
-					<li> <a href="/turnero">Turnero</a> </li>
-					<li> <a href="/turnero">Turnero</a> </li>
+					<li> <a href="/turneroCliente">Cliente</a> </li>
+					<li> <a href="/turneroProfesional">Profesional</a> </li>
 				</ul>
 			</li>
 			<li><a href="/profesionales">Profesionales</a></li>
