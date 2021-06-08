@@ -97,7 +97,8 @@ for (const professional of professionals) {
 }
 
 const clientAppointment = {
-	id: 'A3'
+	id: 'A3',
+	timestamp: new Date('2021-06-11 14:55:00'),
 }
 
 const service = {
